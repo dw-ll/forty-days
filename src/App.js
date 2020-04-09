@@ -12,7 +12,7 @@ function App() {
     'hidden': !open
   });
   return (
-    <div class="App bg-gray-200">
+    <div class="App max-h bg-gray-200">
       <header class='bg-white sm:flex sm:justify-between sm:px-4 sm:py-5'>
         <div class='flex items-center justify-between bg-white px-4 py-3 sm:p-0'>
           <div>
