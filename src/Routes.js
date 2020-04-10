@@ -1,17 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
-import Login from './components/Login';
-import Unknown from './components/Unknown.js';
+import AppliedRoute from './components/AppliedRoute';
+import Home from './containers/Home';
+import Login from './containers/Login';
+import Unknown from './containers/Unknown';
 
-const Routes = () => {
+export default function Routes({ appProps }) {
     return (
         <Switch>
-            <Route path='/' exact component={Home} />
-            <Route path='/login' exact component={Login} />
+            <AppliedRoute path='/' exact component={Home} appProps={appProps} />
+            <AppliedRoute path='/login' exact component={Login} appProps={appProps} />
             <Route exact component={Unknown} />
         </Switch>
     );
 };
-
-export default Routes;
