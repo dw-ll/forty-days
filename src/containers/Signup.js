@@ -57,6 +57,7 @@ const Signup = (props) => {
       setConfirmationForm(true);
       props.history.push("/");
     } catch (e) {
+      console.log(e);
       alert(e.message);
       setIsLoading(false);
     }
