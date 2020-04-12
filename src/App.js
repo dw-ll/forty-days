@@ -41,7 +41,7 @@ function App() {
 
   return (
     !isAuthenticating &&
-    <div class="App max-h bg-gray-200">
+    <div class="h-screen">
       <header class='bg-white sm:flex sm:justify-between sm:px-4 sm:py-5'>
         <div class='flex items-center justify-between bg-white px-4 py-3 sm:p-0'>
           <div>
@@ -68,7 +68,7 @@ function App() {
           </>
         }
       </header>
-      <div class='main-wrapper'>
+      <div class='main-wrapper bg-grey-200 min-h-3/4'>
         <Routes appProps={{ authenticatedUser, setAuthenticatedUser }} />
       </div>
     </div >
