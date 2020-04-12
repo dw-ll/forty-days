@@ -15,7 +15,7 @@ const Confirm = (props) => {
       await Auth.confirmSignUp(fields.email, fields.confirmationCode);
       await Auth.signIn(fields.email, fields.password);
       props.setAuthenticatedUser(true);
-      props.history.push("/");
+      props.history.push("/confirm");
     } catch (e) {
       alert(e.message);
       setIsLoading(false);

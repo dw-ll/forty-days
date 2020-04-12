@@ -12,9 +12,9 @@ const Signup = (props) => {
   });
   const [newUser, setNewUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showConfirmationForm, setConfirmationForm] = useState(false);
 
   function validateForm() {
-    console.log(fields);
     return (
       fields.email.length > 0 &&
       fields.password.length > 0 &&
@@ -22,7 +22,6 @@ const Signup = (props) => {
     );
   }
   function validateConfirmationForm() {
-    console.log("validating confirmation code");
     return fields.confirmationCode.length > 0;
   }
   async function handleSubmit(event) {
@@ -37,17 +36,72 @@ const Signup = (props) => {
       setNewUser(newUser);
     } catch (e) {
       if (e.code === "UsernameExistsException") {
+        setIsLoading(false);
         Auth.resendSignUp(fields.email);
         alert(
-          "Looks like you haven't confirmed your account yet, check your email for a confirmation code!"
+          "Look's like you still haven't confirmed your email, check your inbox for a confirmation code!"
         );
-        props.history.push("/confirm");
+        setConfirmationForm(true);
       } else {
-        console.log(e);
         alert(e.message);
-        setIsLoading(false);
       }
     }
+  }
+  async function handleConfirmationSubmit(event) {
+    event.preventDefault();
+    setIsLoading(true);
+    try {
+      await Auth.confirmSignUp(fields.email, fields.confirmationCode);
+      await Auth.signIn(fields.email, fields.password);
+      props.setAuthenticatedUser(true);
+      setConfirmationForm(true);
+      props.history.push("/");
+    } catch (e) {
+      alert(e.message);
+      setIsLoading(false);
+    }
+  }
+
+  function renderConfirmationForm() {
+    return (
+      <div class="login sm:flex sm:pt-24 sm:justify-center bg-blue-100">
+        <div class="w-full max-w-xs">
+          <BlockUi blocking={isLoading}>
+            <form
+              class="bg-white shadow-lg rounded px-8 pt-8 pb-6 mb-4"
+              onSubmit={handleConfirmationSubmit}
+              type="tel"
+            >
+              <div class="mb-4">
+                <label
+                  class="block text-gray-700 text-sm font-bold mb-2"
+                  for="confirmation-code"
+                >
+                  Confirmation Code
+                </label>
+                <input
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="confirmationCode"
+                  placeholder="Confirmation Code"
+                  value={fields.confirmationCode}
+                  onChange={handleFieldChange}
+                />
+                <h6> Please check your email to confirm your account.</h6>
+              </div>
+              <div class="flex items-center justify-between">
+                <button
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
+                  disabled={!validateConfirmationForm()}
+                  type="submit"
+                >
+                  Sign In
+                </button>
+              </div>
+            </form>
+          </BlockUi>
+        </div>
+      </div>
+    );
   }
 
   function renderForm() {
@@ -124,7 +178,11 @@ const Signup = (props) => {
     );
   }
 
-  return <div class="sign-up">{renderForm()}</div>;
+  return (
+    <div class="sign-up">
+      {showConfirmationForm ? renderConfirmationForm() : renderForm()}
+    </div>
+  );
 };
 
 export default Signup;
