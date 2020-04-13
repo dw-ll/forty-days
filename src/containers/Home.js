@@ -7,6 +7,7 @@ const phrases = ["jot down how you're feeling,", "see how others are feeling,"];
 const Home = (props) => {
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsloading] = useState(true);
+
   useEffect(() => {
     async function onLoad() {
       if (!props.authenticatedUser) {
@@ -15,6 +16,7 @@ const Home = (props) => {
       try {
         const notes = await loadNotes();
         setNotes(notes);
+        console.log(notes);
       } catch (e) {
         alert(e);
       }
@@ -29,7 +31,10 @@ const Home = (props) => {
   const renderNoteList = (notes) => {
     return [{}].concat(notes).map((note, i) =>
       i !== 0 ? (
-        <a href="#" class="block group hover:bg-gray-300 p-4 border-b w-full">
+        <a
+          href={`notes/${note.noteId}`}
+          class="block group hover:bg-gray-300 p-4 border-b w-full"
+        >
           <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
             {note.title}
           </p>
@@ -86,7 +91,9 @@ const Home = (props) => {
   const renderNotes = () => {
     return (
       <div class="notes w-screen py-8 px-12">
-        <h1 class="sm:text-2xl lg:text-4xl w-full font-bold border-b-2">Your Notes</h1>
+        <h1 class="sm:text-2xl lg:text-4xl w-full font-bold border-b-2">
+          Your Notes
+        </h1>
         <div class="items-center justify-center w-full py-8">
           <div class="overflow-hidden bg-white rounded w-full shadow-lg leading-normal">
             {!isLoading && renderNoteList(notes)}

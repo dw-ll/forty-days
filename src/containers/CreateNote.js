@@ -55,7 +55,7 @@ const CreateNote = (props) => {
                 class="max-wm-sm rounded overflow-hidden shadow-lg mt-12 bg-gray-100"
               >
                 <div id="note-content" class="px-6 py-4">
-                  <div class="font-bold text-2xl pt-4">
+                  <div class="font-bold text-2x pt-4">
                     {note.title ? note.title : "New Note"}
                   </div>
                   <p class="text-gray-700 text-base mt-8">

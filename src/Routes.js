@@ -6,6 +6,7 @@ import Login from "./containers/Login";
 import SignUp from "./containers/Signup";
 import Confirm from "./containers/Confirm";
 import CreateNote from "./containers/CreateNote";
+import Notes from "./containers/Notes";
 import Unknown from "./containers/Unknown";
 
 export default function Routes({ appProps }) {
@@ -29,6 +30,12 @@ export default function Routes({ appProps }) {
         path="/notes/new"
         exact
         component={CreateNote}
+        appProps={appProps}
+      />
+      <AppliedRoute
+        path="/notes/:id"
+        exact
+        component={Notes}
         appProps={appProps}
       />
       <Route exact component={Unknown} />
