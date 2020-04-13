@@ -35,15 +35,16 @@ const Notes = (props) => {
   }, [props.match.params.id]);
 
   function validateForm() {
-    console.log(content);
     return content.length > 0;
   }
   function formatFileName(str) {
     return str.replace(/^\w+-/, "");
   }
-  async function saveNote(note) {
-    console.log(note);
-    await API.put("notes", `/notes/${props.match.params.id}`, { body: note });
+  function saveNote(note) {
+    return API.put("notes", `/notes/${props.match.params.id}`, { body: note });
+  }
+  function deleteNote() {
+    return API.del("notes", `/notes/${props.match.params.id}`);
   }
 
   async function handleSubmit(event) {
@@ -54,17 +55,16 @@ const Notes = (props) => {
         title,
         content,
       });
-      console.log(res);
       // include a toast here??
       props.history.push("/");
     } catch (e) {
-      console.log(e);
       alert(e);
       setIsLoading(false);
     }
   }
   async function handleDelete(event) {
     event.preventDefault();
+
     const confirmed = window.confirm(
       "Are you sure you want to delete this note?"
     );
@@ -72,6 +72,13 @@ const Notes = (props) => {
       return;
     }
     setIsDeleting(true);
+    try {
+      await deleteNote();
+      props.history.push("/");
+    } catch (e) {
+      alert(e);
+      setIsDeleting(false);
+    }
   }
   return (
     <div class="note">
@@ -120,16 +127,18 @@ const Notes = (props) => {
                   </button>
                 </div>
               </BlockUi>
-
-              <div class="flex items-center ml-6 justify-between">
-                <button
-                  class="bg-red-400 hover:bg-red-600 text-white font-bold mt-4 py-2 px-4 rounded focus:outline-none"
-                  disabled={!validateForm()}
-                  type="submit"
-                >
-                  Delete
-                </button>
-              </div>
+              <BlockUi blocking={isDeleting}>
+                <div class="flex items-center ml-6 justify-between">
+                  <button
+                    class="bg-red-400 hover:bg-red-600 text-white font-bold mt-4 py-2 px-4 rounded focus:outline-none"
+                    disabled={!validateForm()}
+                    type="submit"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </BlockUi>
             </div>
           </form>
         </div>
