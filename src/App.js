@@ -46,7 +46,7 @@ function App() {
         <div class='flex items-center justify-between bg-white px-4 py-3 sm:p-0'>
           <div>
             <a href="/">
-              <span class="font-semibold text-xl tracking-tight">Forty Days</span>
+              <span class="font-semibold text-2xl tracking-tight pl-12">Forty Days</span>
             </a>
           </div>
           <div>
