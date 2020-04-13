@@ -28,6 +28,7 @@ const Home = (props) => {
   const loadNotes = () => {
     return API.get("notes", "/notes");
   };
+  
   const renderNoteList = (notes) => {
     return [{}].concat(notes).map((note, i) =>
       i !== 0 ? (
