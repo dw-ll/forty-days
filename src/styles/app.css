@@ -42104,7 +42104,7 @@ h6
   }
 }
 
-@media (device-width:812) and (orientation:landscape) {
+@media (device-width:812px) and (orientation:landscape) {
   .xlandscape\:sr-only {
     position: absolute;
     width: 1px;

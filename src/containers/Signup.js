@@ -66,7 +66,7 @@ const Signup = (props) => {
 
   function renderConfirmationForm() {
     return (
-      <div class="login xs:px-8 px-6 xs:py-8 x:py-12 sm:flex sm:pt-24 sm:justify-center bg-gray-400 h-screen">
+      <div class="login px-6 xs:py-8 x:py-12 sm:flex sm:pt-24 sm:justify-center bg-gray-400 h-screen">
         <div class="w-full max-w-xs">
           <BlockUi blocking={isLoading}>
             <form
@@ -108,7 +108,7 @@ const Signup = (props) => {
 
   function renderForm() {
     return (
-      <div class="signup px-8 py-20 x:py-32 sm:flex sm:pt-24 sm:justify-center md:py-48 bg-gray-400 h-screen">
+      <div class="signup px-10 py-32 x:py-32 xlandscape:pt-2 sm:flex sm:pt-24 sm:justify-center mdlandscape:py-4 md:py-48 bg-gray-400 h-screen">
         <div class="w-full px-4 max-w-xs md:mt-4">
           <BlockUi tag="div" blocking={isLoading}>
             <form

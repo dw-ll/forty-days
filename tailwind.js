@@ -12,7 +12,7 @@ module.exports = {
         raw: "(device-width:375px)",
       },
       xlandscape: {
-        raw: "(device-width:812) and (orientation:landscape)",
+        raw: "(device-width:812px) and (orientation:landscape)",
       },
       sm: "640px",
       smlandscape: {

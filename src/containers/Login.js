@@ -29,9 +29,9 @@ const Login = (props) => {
     }
   }
   return (
-    <div class="login pt-24 xs:px-8 x:pt-16 smlandscape:px-48 xlandscape:pl-64 smlandscape:h-full md:pl-24 lg:pl-32 lg:pt-32 xl:px-40 xl:pt-48 justify-center bg-gray-400 h-screen">
+    <div class="login pt-24 xs:px-4 x:pt-16 smlandscape:px-48 xlandscape:pl-64 smlandscape:h-full md:pl-24 lg:pl-32 lg:pt-32 xl:px-36 xl:pt-48 justify-center bg-gray-400 h-screen">
       <div class="py-8 pl-4 x:pl-2 x:py-16 xlandscape:ml-12 md:py-24 md:ml-40 lg:ml-24 xl:mx-32 xxl:mx-64 xxl:pl-40">
-        <h1 class="font-bold mb-6 pl-8 xs:text-2xl x:text-2xl x:px-8 md:px-2  md:text-3xl lg:ml-32 lg:px-4 xl:ml-56 xl:px-10">
+        <h1 class="font-bold mb-4 pl-8 xs:text-2xl x:text-2xl x:px-8 md:px-2  md:text-3xl lg:ml-32 lg:px-4 xl:ml-56 xl:px-10">
           Log in to Forty Days
         </h1>
         <div class="login-form w-full lg:ml-32 xl:ml-64 content-center max-w-xs">

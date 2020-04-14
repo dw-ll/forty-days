@@ -82,9 +82,11 @@ const Home = (props) => {
               </div>
 
               <div class="button-wrapper smlandscape:items-start mt-4 ml-6 xs:pb-4 md:mt-0 sm:px-16 md:px-6 galaxylandscape:px-0 lg:px-6 md:ml-0 items-end">
-                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-2 rounded-md md:rounded-full md:w-48 lg:w-64 md:text-xl">
-                  Sign Up
-                </button>
+                <a href="/signup">
+                  <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-2 rounded-md md:rounded-full md:w-48 lg:w-64 md:text-xl">
+                    Sign Up
+                  </button>
+                </a>
               </div>
             </div>
 

@@ -14,7 +14,7 @@ function App() {
     setOpen(!open);
   };
 
-  var burgerClass = classNames("px-2 pt-2 pb-4 sm:flex items-end", {
+  var burgerClass = classNames("px-2 py-1 sm:flex items-end", {
     block: open,
     hidden: !open,
   });
@@ -42,8 +42,8 @@ function App() {
   return (
     !isAuthenticating && (
       <div class="h-screen">
-        <header class="bg-white sm:flex sm:justify-between sm:px-4 sm:py-2">
-          <div class="flex items-center justify-between bg-white px-4 py-2 sm:p-0">
+        <header class="bg-white sm:flex sm:justify-between sm:px-4 sm:py-1">
+          <div class="flex items-center justify-between bg-white px-4 py-1 sm:p-0">
             <div>
               <a href="/">
                 <h1 class="font-semibold text-xl md:text-2xl lg:text-3xl tracking-normal lg:pl-0 xl:pl-4">
@@ -55,7 +55,7 @@ function App() {
               <button
                 onClick={handleOnClick}
                 type="button"
-                class="smlandscape:hidden py-2 text-gray-700 focus:outline-none"
+                class="invisible xs:visible py-2 text-gray-700 focus:outline-none"
               >
                 <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                   <path
@@ -67,26 +67,29 @@ function App() {
             </div>
           </div>
           {authenticatedUser ? (
-            <a
-              href="/"
-              onClick={handleLogout}
-              class="block px-2 py-1  font-semibold hover:bg-gray-100 text-right sm:mt-0"
-            >
-              {" "}
-              Logout
-            </a>
+            <>
+              <div class={burgerClass}>
+                <a
+                  href="/"
+                  onClick={handleLogout}
+                  class="block px-2 py-2 font-semibold hover:bg-gray-100 text-right sm:mt-0"
+                >
+                  Logout
+                </a>
+              </div>
+            </>
           ) : (
             <>
               <div class={burgerClass}>
                 <a
                   href="/login"
-                  class="block px-2 py-4  font-semibold hover:bg-gray-100 text-right sm:mt-0"
+                  class="block px-1 py-1 md:px-2 md:py-4  font-semibold hover:bg-gray-100 text-right sm:mt-0"
                 >
                   Login
                 </a>
                 <a
                   href="/signup"
-                  class="mt-1 block px-2 py-4 font-semibold hover:bg-gray-100 text-right sm:mt-0 sm:ml-2"
+                  class="px-1 py-1 block md:px-2 md:py-4 font-semibold hover:bg-gray-100 text-right sm:mt-0 sm:ml-2"
                 >
                   Sign up
                 </a>
