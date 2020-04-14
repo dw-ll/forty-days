@@ -4,6 +4,7 @@ module.exports = {
   separator: ":",
   theme: {
     screens: {
+      xs: { max: "575px" }, // Mobile (iPhone 3 - iPhone XS Max).
       sm: "640px",
       md: "768px",
       lg: "1024px",
@@ -14,7 +15,7 @@ module.exports = {
 
       black: "#000",
       white: "#fff",
-
+      laurenscoral: "#FF7F50",
       gray: {
         100: "#f7fafc",
         200: "#edf2f7",
@@ -284,7 +285,7 @@ module.exports = {
       auto: "auto",
       ...theme("spacing"),
       full: "100%",
-      forty:'40vh',
+      forty: "40vh",
       half: "50vh",
       screen: "100vh",
     }),
