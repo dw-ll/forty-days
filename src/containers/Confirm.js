@@ -26,7 +26,7 @@ const Confirm = (props) => {
     return fields.confirmationCode.length > 0;
   }
   return (
-    <div class="login sm:flex sm:pt-24 sm:justify-center bg-blue-100">
+    <div class="login py-12 sm:flex sm:pt-24 sm:justify-center bg-gray-400">
       <div class="w-full max-w-xs">
         <BlockUi blocking={isLoading}>
           <form

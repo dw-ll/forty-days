@@ -44,6 +44,7 @@ const Signup = (props) => {
         setConfirmationForm(true);
       } else {
         alert(e.message);
+        setIsLoading(false);
       }
     }
   }
@@ -65,7 +66,7 @@ const Signup = (props) => {
 
   function renderConfirmationForm() {
     return (
-      <div class="login sm:flex sm:pt-24 sm:justify-center bg-blue-100">
+      <div class="login xs:px-8 px-6 xs:py-8 x:py-12 sm:flex sm:pt-24 sm:justify-center bg-gray-400 h-screen">
         <div class="w-full max-w-xs">
           <BlockUi blocking={isLoading}>
             <form
@@ -107,8 +108,8 @@ const Signup = (props) => {
 
   function renderForm() {
     return (
-      <div class="login sm:flex sm:pt-24 sm:justify-center bg-blue-100">
-        <div class="w-full max-w-xs">
+      <div class="signup px-8 py-20 x:py-32 sm:flex sm:pt-24 sm:justify-center md:py-48 bg-gray-400 h-screen">
+        <div class="w-full px-4 max-w-xs md:mt-4">
           <BlockUi tag="div" blocking={isLoading}>
             <form
               class="bg-white shadow-lg rounded px-8 pt-8 pb-6 mb-4"
@@ -165,7 +166,7 @@ const Signup = (props) => {
 
               <div class="flex items-center justify-between">
                 <button
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
+                  class="bg-gray-500 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded focus:outline-none"
                   disabled={!validateForm()}
                   type="submit"
                 >
