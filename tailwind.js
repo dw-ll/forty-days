@@ -5,12 +5,22 @@ module.exports = {
   theme: {
     screens: {
       xs: { max: "575px" }, // Mobile (iPhone 3 - iPhone XS Max).
+      xslandscape: {
+        raw: "(max-device-width:575px) and (orientation:landscape)",
+      },
+      x: {
+        raw: "(device-width:375px)",
+      },
+      xlandscape: {
+        raw: "(device-width:812) and (orientation:landscape)",
+      },
       sm: "640px",
       smlandscape: {
         raw: "(max-device-width:768px) and (orientation:landscape)",
       },
       galaxylandscape: {
-        raw: "(device-width:740px) and (orientation:landscape)",
+        raw:
+          "(device-width:740px or device-width:667px) and (orientation:landscape)",
       },
       md: "768px",
       mdlandscape: {
@@ -18,6 +28,7 @@ module.exports = {
       },
       lg: "1024px",
       xl: "1280px",
+      xxl: "1920px",
     },
 
     colors: {

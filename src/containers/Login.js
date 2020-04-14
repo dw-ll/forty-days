@@ -29,12 +29,12 @@ const Login = (props) => {
     }
   }
   return (
-    <div class="login pl-6 lg:pl-32 xl:pl-64 pt-24 lg:pt-32 xl:pt-48 justify-center bg-gray-400 h-screen">
-      <div class="lg:ml-8 xl:ml-10">
-        <h1 class="font-bold pl-10 lg:ml-16 xl:ml-20 md:pl-48 mb-6 text-2xl md:text-3xl">
+    <div class="login pt-24 xs:px-8 x:pt-16 smlandscape:px-48 xlandscape:pl-64 smlandscape:h-full md:pl-24 lg:pl-32 lg:pt-32 xl:px-40 xl:pt-48 justify-center bg-gray-400 h-screen">
+      <div class="py-8 pl-4 x:pl-2 x:py-16 xlandscape:ml-12 md:py-24 md:ml-40 lg:ml-24 xl:mx-32 xxl:mx-64 xxl:pl-40">
+        <h1 class="font-bold mb-6 pl-8 xs:text-2xl x:text-2xl x:px-8 md:px-2  md:text-3xl lg:ml-32 lg:px-4 xl:ml-56 xl:px-10">
           Log in to Forty Days
         </h1>
-        <div class="w-full lg:ml-32 xl:ml-64 content-center max-w-xs">
+        <div class="login-form w-full lg:ml-32 xl:ml-64 content-center max-w-xs">
           <BlockUi tag="div" blocking={isLoading}>
             <form
               class="bg-white shadow-lg rounded px-8 pt-8 pb-6 mb-4"

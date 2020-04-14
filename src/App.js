@@ -55,7 +55,7 @@ function App() {
               <button
                 onClick={handleOnClick}
                 type="button"
-                class="md:hidden text-gray-700 focus:outline-none"
+                class="smlandscape:hidden py-2 text-gray-700 focus:outline-none"
               >
                 <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                   <path
@@ -80,13 +80,13 @@ function App() {
               <div class={burgerClass}>
                 <a
                   href="/login"
-                  class="block px-2 py-1  font-semibold hover:bg-gray-100 text-right sm:mt-0"
+                  class="block px-2 py-4  font-semibold hover:bg-gray-100 text-right sm:mt-0"
                 >
                   Login
                 </a>
                 <a
                   href="/signup"
-                  class="mt-1 block px-2 py-1 font-semibold hover:bg-gray-100 text-right sm:mt-0 sm:ml-2"
+                  class="mt-1 block px-2 py-4 font-semibold hover:bg-gray-100 text-right sm:mt-0 sm:ml-2"
                 >
                   Sign up
                 </a>
@@ -94,7 +94,7 @@ function App() {
             </>
           )}
         </header>
-        <div class="main-wrapper bg-grey-200 min-h-3/4">
+        <div class="main-wrapper bg-grey-200 h-screen">
           <Routes appProps={{ authenticatedUser, setAuthenticatedUser }} />
         </div>
       </div>
