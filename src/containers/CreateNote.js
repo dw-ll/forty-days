@@ -46,8 +46,8 @@ const CreateNote = (props) => {
   }
   return (
     <BlockUi blocking={isLoading}>
-      <div class="flex mb-4 h-screen">
-        <div class="w-1/2 h-full bg-gray-400">
+      <div class="page-wrapper flex mb-4 h-screen ">
+        <div class="left-half hidden lg:flex w-1/2 py-12 h-full bg-gray-400">
           <div class="max-w-full max-w-xs">
             <form class="px-16 py-8 mb-4" onSubmit={handleSubmit}>
               <div
@@ -69,18 +69,21 @@ const CreateNote = (props) => {
           </div>
         </div>
 
-        <div class="w-1/2 h-full bg-gray-500">
-          <div class="max-w-full max-w-xs">
-            <form class="px-16 py-8 mb-4 h-full" onSubmit={handleSubmit}>
+        <div class="right-half lg:h-full w-screen lg:w-1/2 px-8 mdlandscape:overflow-y-scroll lg:px-0 bg-gray-500">
+          <div class="form-wrapper max-w-full max-w-xs mdlandscape:ml-24 mdlandscape:max-h-screen md:ml-24 lg:py-12 lg:ml-0 xl:ml-24 xxl:ml-64">
+            <form
+              class="px-2 mdlandscape:py-0 md:px-16 max-h-1/2 md:py-8 md:mb-4"
+              onSubmit={handleSubmit}
+            >
               <div
                 id="note-card"
-                class="max-wm-sm min-h-128 rounded overflow-hidden shadow-lg mt-12 bg-gray-300"
+                class="max-w-sm md:max-h-1/2 rounded overflow-hidden shadow-lg mt-12 bg-gray-300"
               >
                 <div class="flex pt-4 items-center border-b border-blue-200 py-2 mx-6">
                   <input
                     class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 leading-tight focus:outline-none"
                     type="text"
-                    id="title"
+                    id="title-"
                     onChange={handleNote}
                     placeholder="New Note"
                     aria-label="Note Title"
@@ -93,7 +96,7 @@ const CreateNote = (props) => {
                       rows="12"
                       id="content"
                       onChange={handleNote}
-                      placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
+                      placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
                     />
                   </label>
                 </div>

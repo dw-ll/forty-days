@@ -18,6 +18,7 @@ module.exports = {
       smlandscape: {
         raw: "(max-device-width:768px) and (orientation:landscape)",
       },
+
       galaxylandscape: {
         raw:
           "(device-width:740px or device-width:667px) and (orientation:landscape)",
@@ -27,6 +28,9 @@ module.exports = {
         raw: "(max-device-width:1024px) and (orientation:landscape)",
       },
       lg: "1024px",
+      lglandscape: {
+        raw: "(max-device-width:1280px) and (orientation:landscape)",
+      },
       xl: "1280px",
       xxl: "1920px",
     },
