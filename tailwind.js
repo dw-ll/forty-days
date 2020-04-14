@@ -6,10 +6,20 @@ module.exports = {
     screens: {
       xs: { max: "575px" }, // Mobile (iPhone 3 - iPhone XS Max).
       sm: "640px",
+      smlandscape: {
+        raw: "(max-device-width:768px) and (orientation:landscape)",
+      },
+      galaxylandscape: {
+        raw: "(device-width:740px) and (orientation:landscape)",
+      },
       md: "768px",
+      mdlandscape: {
+        raw: "(max-device-width:1024px) and (orientation:landscape)",
+      },
       lg: "1024px",
       xl: "1280px",
     },
+
     colors: {
       transparent: "transparent",
 
@@ -287,6 +297,7 @@ module.exports = {
       full: "100%",
       forty: "40vh",
       half: "50vh",
+      sixty: "60vh",
       screen: "100vh",
     }),
     inset: {

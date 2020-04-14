@@ -42,13 +42,13 @@ function App() {
   return (
     !isAuthenticating && (
       <div class="h-screen">
-        <header class="bg-white sm:flex sm:justify-between sm:px-4 sm:py-5">
+        <header class="bg-white sm:flex sm:justify-between sm:px-4 sm:py-2">
           <div class="flex items-center justify-between bg-white px-4 py-2 sm:p-0">
             <div>
               <a href="/">
-                <span class="font-semibold text-xl md:text-2xl tracking-tight lg:pl-12">
+                <h1 class="font-semibold text-xl md:text-2xl lg:text-3xl tracking-normal lg:pl-0 xl:pl-4">
                   Forty Days
-                </span>
+                </h1>
               </a>
             </div>
             <div>

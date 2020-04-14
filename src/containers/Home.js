@@ -56,8 +56,8 @@ const Home = (props) => {
   const renderLanding = () => {
     return (
       <div>
-        <div class="w-screen bg-gray-400 md:py-12 md:h-half max-h-half">
-          <div class="header-content flex pt-8">
+        <div class="w-screen bg-gray-400 smlandscape:h-forty md:py-12 md:h-half mdlandscape:h-screen lg:py-8 lg:h-forty xl:h-half max-h-half">
+          <div class="header-content flex pt-8 md:px-2">
             <div class="md:w-3/4 pb-2 xl:pt-12 xl:pl-10">
               <div class="md:hidden">
                 <lottie-player
@@ -70,25 +70,25 @@ const Home = (props) => {
                   class=""
                 ></lottie-player>
               </div>
-              <div class="md:w-1/4 xs:mt-4">
-                <h1 class="text-xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-4 ">
+              <div class=" xs:mt-4 md:py-8">
+                <h1 class="text-xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-8 galaxylandscape:py-2 galaxylandscape:text-2xl">
                   Forty Days
                 </h1>
 
-                <h2 class="text-sm sm:text-xl xl:text-2xl px-6 md:px-4">
+                <h2 class="text-sm sm:text-xl lg:text-2xl px-6 md:px-8 md:mt-4">
                   A space to <TextLoop children={phrases} /> during the COVID-19
                   pandemic.
                 </h2>
               </div>
 
-              <div class="mt-6 ml-6 xs:pb-4 sm:px-16 items-end">
-                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-2 rounded-md">
+              <div class="button-wrapper smlandscape:items-start mt-4 ml-6 xs:pb-4 md:mt-0 sm:px-16 md:px-6 galaxylandscape:px-0 lg:px-6 md:ml-0 items-end">
+                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-2 rounded-md md:rounded-full md:w-48 lg:w-64 md:text-xl">
                   Sign Up
                 </button>
               </div>
             </div>
 
-            <div class="hidden lg:block">
+            <div class="hidden md:block">
               <lottie-player
                 src="https://assets1.lottiefiles.com/packages/lf20_Mz7MDP.json"
                 background="transparent"
@@ -102,9 +102,9 @@ const Home = (props) => {
           </div>
         </div>
 
-        <div class="content container">
-          <div class="md:w-1/2 xs:pt-8">
-            <div class="md:hidden mx-auto">
+        <div class="content inline-flex">
+          <div class="lg:w-3/4 xs:pt-8 md:pt-16 md:pr-4 lg:pr-0 md:flex">
+            <div class="lg:hidden md:w-1/4 md:ml-2 md:pl-2">
               <lottie-player
                 src="https://assets7.lottiefiles.com/packages/lf20_Kwds3V.json"
                 background="transparent"
@@ -115,34 +115,36 @@ const Home = (props) => {
                 class=""
               ></lottie-player>
             </div>
-            <h2 class="ml-4 sm:ml-6 md:pl-12 md:pt-10 md:pt-32 lg:ml-6 text-sm md:text-2xl lg:text-3xl font-bold">
-              Share how you're feeling, anonymously.
-            </h2>
-            <h2 class="md:hidden pl-4 md:pl-16 text-md md:text-xl xl:text-2xl text-gray-700">
-              We're experiencing an extremely isolating and digital time in our
-              lives. Forty Days is a space to listen and talk to others by
-              journaling, without worrying about any sort of identity.
-            </h2>
-            <h2 class="invisible md:visible pl-8 md:pl-16 text-md md:text-xl xl:text-2xl text-gray-700">
-              We're experiencing an extremely isolating and digital time in our
-              lives.
-            </h2>
+            <div class="body-content md:w-3/4 md:ml-8 lg:ml-2 xl:ml-4 lg:pt-16">
+              <h2 class="text-sm ml-4 sm:ml-6 smlandscape:ml-4 md:ml-12 md:pl-0 md:pt-4 md:text-2xl lg:text-xl lg:ml-0 xl:ml-4 lg:pl-8 xl:text-3xl font-bold">
+                Share how you're feeling, anonymously.
+              </h2>
+              <h2 class="md:hidden pl-4 text-md  text-gray-700">
+                We're experiencing an extremely isolating and digital time in
+                our lives. Forty Days is a space to listen and talk to others by
+                journaling, without worrying about any sort of identity.
+              </h2>
+              <h2 class="invisible md:visible ml-12 text-md md:text-xl lg:ml-8 xl:ml-12 xl:text-2xl text-gray-700">
+                We're experiencing an extremely isolating and digital time in
+                our lives.
+              </h2>
 
-            <h2 class="invisible md:visible pl-8 md:pl-16 text-md md:text-xl xl:text-2xl text-gray-700">
-              Forty Days is a space to listen and talk to others by journaling,
-              without worrying about any sort of identity.
-            </h2>
+              <h2 class="invisible md:visible ml-12 text-md md:text-xl lg:ml-8 xl:ml-12 xl:text-2xl text-gray-700">
+                Forty Days is a space to listen and talk to others by
+                journaling, without worrying about any sort of identity.
+              </h2>
+            </div>
           </div>
-          <div class="sm:w-1/4 md:w-1/2 h-full">
+          <div class="">
             <div class="hidden lg:block">
               <lottie-player
                 src="https://assets7.lottiefiles.com/packages/lf20_Kwds3V.json"
                 background="transparent"
                 speed="1"
-                style={{ width: "300px", height: "300px" }}
+                style={{ width: "400px", height: "400px" }}
                 loop
                 autoplay
-                class="md:hidden lg:pl-24 md:pt-8"
+                class="py-6"
               ></lottie-player>
             </div>{" "}
           </div>
