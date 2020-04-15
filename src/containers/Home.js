@@ -22,9 +22,11 @@ const lottieStyles = {
 const phrases = ["jot down how you're feeling,", "see how others are feeling,"];
 const Home = (props) => {
   const [notes, setNotes] = useState([]);
+  const [allNotes, setAllNotes] = useState([]);
   const [currentNote, setCurrentNote] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [noteModal, setNoteModal] = useState(false);
+  const [currentTab, setCurrentTab] = useState(false);
 
   useEffect(() => {
     async function onLoad() {
@@ -33,8 +35,18 @@ const Home = (props) => {
       }
       try {
         const notes = await loadNotes();
+        const allNotes = await loadAllNotes();
+        notes.sort(function (a, b) {
+          return b.createdAt - a.createdAt;
+        });
+        allNotes.sort(function (a, b) {
+          return b.createdAt - a.createdAt;
+        });
         setNotes(notes);
+        setAllNotes(allNotes);
+
         console.log(notes);
+        console.log(allNotes);
       } catch (e) {
         alert(e);
       }
@@ -45,6 +57,9 @@ const Home = (props) => {
 
   const loadNotes = () => {
     return API.get("notes", "/notes");
+  };
+  const loadAllNotes = () => {
+    return API.get("notes", "/notes/all");
   };
   const toggleNoteModal = (note) => {
     setNoteModal(!noteModal);
@@ -75,7 +90,7 @@ const Home = (props) => {
               </div>
               {/*body*/}
               <div className="relative p-6 flex-auto">
-                <p className="my-4 text-gray-600 text-lg leading-relaxed">
+                <p className="my-4 text-gray-600 text-xl leading-relaxed">
                   {note.content}
                 </p>
               </div>
@@ -89,9 +104,13 @@ const Home = (props) => {
                 >
                   Close
                 </button>
-                <a href={`notes/${note.noteId}`}>
+
+                <a
+                  href={`notes/${note.noteId}`}
+                  class={currentTab ? "hidden" : ""}
+                >
                   <button
-                    className="bg-gray-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                    className="bg-gray-500 hover:bg-gray-800 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     style={{ transition: "all .15s ease" }}
                   >
@@ -117,7 +136,43 @@ const Home = (props) => {
             onClick={() => {
               toggleNoteModal(note);
             }}
-            class="block group hover:bg-gray-300 p-4 border-b w-full"
+            class="block group hover:bg-gray-300 p-4 border-b w-full cursor-pointer"
+            key={i}
+            id={note}
+          >
+            <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
+              {note.title}
+            </p>
+            <p class="text-grey-darker mb-2 group-hover:text-white">
+              {note.content.trim().split("\n")[0]}
+            </p>
+            <p class="flex items-end">
+              Written: {new Date(note.createdAt).toLocaleString()}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <a href="/notes/new" class="block group hover:bg-gray-300 p-4 border-b">
+          <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
+            <b>{"\uFF0B"}</b>
+            Create a new note
+          </p>
+        </a>
+      )
+    );
+  };
+
+  const renderAllNotes = (allNotes) => {
+    return [{}].concat(allNotes).map((note, i) =>
+      i !== 0 ? (
+        <div>
+          {noteModal && renderModal(currentNote)}
+
+          <div
+            onClick={() => {
+              toggleNoteModal(note);
+            }}
+            class="block group hover:bg-gray-300 p-4 border-b w-full cursor-pointer"
             key={i}
             id={note}
           >
@@ -237,18 +292,39 @@ const Home = (props) => {
   const renderNotes = () => {
     return (
       <div class="notes w-screen py-8 px-12">
-        <h1 class="sm:text-2xl lg:text-4xl w-full font-bold border-b-2">
-          Your Notes
+        <div class="px-8">
+          <ul class="list-reset flex border-b">
+            <li class="-mb-px mr-1" onClick={() => setCurrentTab(false)}>
+              <a
+                class="bg-white active:bg-gray-500 inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-800 font-semibold"
+                href="/#"
+              >
+                You
+              </a>
+            </li>
+            <li class="mr-1" onClick={() => setCurrentTab(true)}>
+              <a
+                class="bg-white active:bg-gray-500 inline-block py-2 px-4 text-blue-400 hover:text-blue-600 font-semibold"
+                href="/#"
+              >
+                Us
+              </a>
+            </li>
+          </ul>
+        </div>
+        <h1 class="text-xl sm:text-2xl lg:text-4xl w-full font-bold border-b-2">
+          {!currentTab ? "Your Notes" : "Our Notes"}
         </h1>
         <div class="items-center justify-center w-full py-8">
           <div class="overflow-hidden bg-white rounded w-full shadow-lg leading-normal">
-            {!isLoading && renderNoteList(notes)}
+            {!isLoading && !currentTab
+              ? renderNoteList(notes)
+              : renderAllNotes(allNotes)}
           </div>
         </div>
       </div>
     );
   };
-
   return (
     <div class="home">
       {props.authenticatedUser ? renderNotes() : renderLanding()}
