@@ -31,6 +31,9 @@ module.exports = {
       lglandscape: {
         raw: "(max-device-width:1280px) and (orientation:landscape)",
       },
+      mdp: {
+        raw: "(device-width:1280px)",
+      },
       xl: "1280px",
       xxl: "1920px",
     },

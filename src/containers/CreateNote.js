@@ -9,6 +9,7 @@ const CreateNote = (props) => {
   const [note, handleNote] = useFormFields({
     title: "",
     content: "",
+    attachment: null,
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,6 +35,7 @@ const CreateNote = (props) => {
       await createNote({ note });
       props.history.push("/");
     } catch (e) {
+      console.log(e);
       alert(e);
       setIsLoading(false);
     }
@@ -49,16 +51,17 @@ const CreateNote = (props) => {
       <div class="page-wrapper flex mb-4 h-screen ">
         <div class="left-half hidden lg:flex w-1/2 py-12 h-full bg-gray-400">
           <div class="max-w-full max-w-xs">
-            <form class="px-16 py-8 mb-4" onSubmit={handleSubmit}>
+            <form class="px-16 py-8 mb-4 lg:min-w-full" onSubmit={handleSubmit}>
               <div
                 id="note-card"
-                class="max-wm-sm rounded overflow-hidden shadow-lg mt-12 bg-gray-100"
+                class="max-wm-sm rounded shadow-lg mt-12 bg-gray-100 lg:min-w-full"
+            
               >
                 <div id="note-content" class="px-6 py-4">
                   <div class="font-bold text-2x pt-4">
                     {note.title ? note.title : "New Note"}
                   </div>
-                  <p class="text-gray-700 text-base mt-8">
+                  <p class="text-gray-700 text-base mt-8 px-2" style={{whiteSpace:'pre-wrap'}}>
                     {note.content
                       ? note.content
                       : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."}
@@ -70,20 +73,20 @@ const CreateNote = (props) => {
         </div>
 
         <div class="right-half lg:h-full w-screen lg:w-1/2 px-8 mdlandscape:overflow-y-scroll lg:px-0 bg-gray-500">
-          <div class="form-wrapper max-w-full max-w-xs mdlandscape:ml-24 mdlandscape:max-h-screen md:ml-24 lg:py-12 lg:ml-0 xl:ml-24 xxl:ml-64">
+          <div class="form-wrapper max-w-full max-w-xs  mdlandscape:max-h-screen py-6 md:ml-8 lg:py-12 lg:ml-0 xl:ml-18 xxl:ml-18">
             <form
-              class="px-2 mdlandscape:py-0 md:px-16 max-h-1/2 md:py-8 md:mb-4"
+              class="px-2 mdlandscape:py-0 md:px-16 max-h-1/2 md:py-8 md:mb-4 lg:px-12 lg:min-w-full"
               onSubmit={handleSubmit}
             >
               <div
                 id="note-card"
-                class="max-w-sm md:max-h-1/2 rounded overflow-hidden shadow-lg mt-12 bg-gray-300"
+                class="md:max-h-1/2 rounded overflow-hidden shadow-lg mt-12 bg-gray-300 lg:w-full"
               >
                 <div class="flex pt-4 items-center border-b border-blue-200 py-2 mx-6">
                   <input
                     class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 leading-tight focus:outline-none"
                     type="text"
-                    id="title-"
+                    id="title"
                     onChange={handleNote}
                     placeholder="New Note"
                     aria-label="Note Title"
