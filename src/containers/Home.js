@@ -22,7 +22,9 @@ const lottieStyles = {
 const phrases = ["jot down how you're feeling,", "see how others are feeling,"];
 const Home = (props) => {
   const [notes, setNotes] = useState([]);
+  const [currentNote, setCurrentNote] = useState(null);
   const [isLoading, setIsloading] = useState(true);
+  const [noteModal, setNoteModal] = useState(false);
 
   useEffect(() => {
     async function onLoad() {
@@ -44,21 +46,92 @@ const Home = (props) => {
   const loadNotes = () => {
     return API.get("notes", "/notes");
   };
+  const toggleNoteModal = (note) => {
+    setNoteModal(!noteModal);
+    setCurrentNote(note);
+  };
+
+  const renderModal = (note) => {
+    return (
+      <>
+        <div
+          className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none "
+          onClick={() => setNoteModal(false)}
+        >
+          <div className="relative w-auto my-6 mx-auto max-w-3xl x:px-2">
+            {/*content*/}
+            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              {/*header*/}
+              <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
+                <h3 className="text-3xl font-semibold">{note.title}</h3>
+                <button
+                  className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                  onClick={() => setNoteModal(false)}
+                >
+                  <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none pl-2 pt-2">
+                    ×
+                  </span>
+                </button>
+              </div>
+              {/*body*/}
+              <div className="relative p-6 flex-auto">
+                <p className="my-4 text-gray-600 text-lg leading-relaxed">
+                  {note.content}
+                </p>
+              </div>
+              {/*footer*/}
+              <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+                <button
+                  className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                  type="button"
+                  style={{ transition: "all .15s ease" }}
+                  onClick={() => setNoteModal(false)}
+                >
+                  Close
+                </button>
+                <a href={`notes/${note.noteId}`}>
+                  <button
+                    className="bg-gray-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                    style={{ transition: "all .15s ease" }}
+                  >
+                    Edit
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+      </>
+    );
+  };
 
   const renderNoteList = (notes) => {
     return [{}].concat(notes).map((note, i) =>
       i !== 0 ? (
-        <a
-          href={`notes/${note.noteId}`}
-          class="block group hover:bg-gray-300 p-4 border-b w-full"
-        >
-          <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
-            {note.title}
-          </p>
-          <p class="text-grey-darker mb-2 group-hover:text-white">
-            {note.content.trim().split("\n")[0]}
-          </p>
-        </a>
+        <div>
+          {noteModal && renderModal(currentNote)}
+
+          <div
+            onClick={() => {
+              toggleNoteModal(note);
+            }}
+            class="block group hover:bg-gray-300 p-4 border-b w-full"
+            key={i}
+            id={note}
+          >
+            <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
+              {note.title}
+            </p>
+            <p class="text-grey-darker mb-2 group-hover:text-white">
+              {note.content.trim().split("\n")[0]}
+            </p>
+            <p class="flex items-end">
+              Written: {new Date(note.createdAt).toLocaleString()}
+            </p>
+          </div>
+        </div>
       ) : (
         <a href="/notes/new" class="block group hover:bg-gray-300 p-4 border-b">
           <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
