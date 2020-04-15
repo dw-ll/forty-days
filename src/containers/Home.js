@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
 import TextLoop from "react-text-loop";
+import Lottie from "react-lottie";
+import home from "../home2.json";
 import "../styles/app.css";
-
+const lottieOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: home,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 const phrases = ["jot down how you're feeling,", "see how others are feeling,"];
 const Home = (props) => {
   const [notes, setNotes] = useState([]);
@@ -60,15 +69,7 @@ const Home = (props) => {
           <div class="header-content flex pt-8 md:px-2">
             <div class="md:w-3/4 pb-2 xl:pt-12 xl:pl-10">
               <div class="md:hidden">
-                <lottie-player
-                  src="https://assets1.lottiefiles.com/packages/lf20_Mz7MDP.json"
-                  background="transparent"
-                  speed="1"
-                  style={{ width: "150px", height: "100px" }}
-                  loop
-                  autoplay
-                  class=""
-                ></lottie-player>
+                <Lottie options={lottieOptions} height={150} width={150} />
               </div>
               <div class=" xs:mt-4 md:py-8">
                 <h1 class="text-xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-8 galaxylandscape:py-2 galaxylandscape:text-2xl">
@@ -91,15 +92,7 @@ const Home = (props) => {
             </div>
 
             <div class="hidden md:block">
-              <lottie-player
-                src="https://assets1.lottiefiles.com/packages/lf20_Mz7MDP.json"
-                background="transparent"
-                speed="1"
-                style={{ width: "300px", height: "300px" }}
-                loop
-                autoplay
-                class="lg:pl-18 "
-              ></lottie-player>
+              <Lottie options={lottieOptions} height={300} width={300} class='lg:pl-18' />
             </div>
           </div>
         </div>
@@ -117,7 +110,7 @@ const Home = (props) => {
                 class=""
               ></lottie-player>
             </div>
-            <div class="body-content md:w-3/4 md:ml-8 lg:ml-2 xl:ml-4 lg:pt-16">
+            <div class="body-content md:w-3/4 md:ml-8 lg:ml-0 xl:ml-4 lg:pt-16 xxl:ml-64">
               <h2 class="text-sm ml-4 sm:ml-6 smlandscape:ml-4 md:ml-12 md:pl-0 md:pt-4 md:text-2xl lg:text-xl lg:ml-0 xl:ml-4 lg:pl-8 xl:text-3xl font-bold">
                 Share how you're feeling, anonymously.
               </h2>
@@ -127,8 +120,7 @@ const Home = (props) => {
                 journaling, without worrying about any sort of identity.
               </h2>
               <h2 class="invisible md:visible ml-12 text-md md:text-xl lg:ml-8 xl:ml-12 xl:text-2xl text-gray-700">
-                We're experiencing an extremely isolating and digital time in
-                our lives.
+                We're experiencing an extremely isolating and digital time in our lives.
               </h2>
 
               <h2 class="invisible md:visible ml-12 text-md md:text-xl lg:ml-8 xl:ml-12 xl:text-2xl text-gray-700">
