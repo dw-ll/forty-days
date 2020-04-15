@@ -1,1 +1,1 @@
-#### A place to jot down notes during the current lockdown.
+#### A space to share your thoughts via journaling, during the COVID-19 pandemic.
