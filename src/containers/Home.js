@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
+import classNames from "classnames";
 import TextLoop from "react-text-loop";
 import Lottie from "react-lottie";
 import home from "../home2.json";
@@ -55,6 +56,10 @@ const Home = (props) => {
     onLoad();
   }, [props.authenticatedUser]);
 
+  const activeTab =
+    "bg-white cursor:pointer inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold";
+  const idleTab =
+    "bg-white cursor:pointer inline-block py-2 px-4 text-gray-500 hover:text-blue-800 font-semibold";
   const loadNotes = () => {
     return API.get("notes", "/notes");
   };
@@ -73,9 +78,9 @@ const Home = (props) => {
           className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none "
           onClick={() => setNoteModal(false)}
         >
-          <div className="relative w-auto my-6 mx-auto max-w-3xl x:px-2">
+          <div className="relative w-auto px-6 my-6 mx-auto max-w-3xl x:px-2">
             {/*content*/}
-            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <div className="border-0 rounded-lg shadow-lg sm:px-2 relative flex flex-col w-full bg-white outline-none focus:outline-none">
               {/*header*/}
               <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
                 <h3 className="text-3xl font-semibold">{note.title}</h3>
@@ -203,7 +208,7 @@ const Home = (props) => {
         <div class="w-screen bg-gray-400 smlandscape:h-1/2 md:py-12 md:h-half mdlandscape:h-screen lg:py-8 lg:h-forty xl:h-half max-h-half">
           <div class="header-content flex pt-8 md:px-2">
             <div class="md:w-3/4 pb-2 xl:pt-12 xl:pl-10">
-              <div class="px-2 mb-2 md:hidden">
+              <div class="ml-4 mb-2 md:hidden">
                 <Lottie options={lottieOptions} height={150} width={150} />
               </div>
               <div class=" xs:mt-4 md:py-8">
@@ -292,23 +297,13 @@ const Home = (props) => {
   const renderNotes = () => {
     return (
       <div class="notes w-screen py-8 px-12">
-        <div class="px-8">
-          <ul class="list-reset flex border-b">
+        <div class="max-w-sm mb-2 w-screen">
+          <ul class="flex">
             <li class="-mb-px mr-1" onClick={() => setCurrentTab(false)}>
-              <a
-                class="bg-white active:bg-gray-500 inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-800 font-semibold"
-                href="/#"
-              >
-                You
-              </a>
+              <a class={!currentTab ? activeTab : idleTab}>You</a>
             </li>
             <li class="mr-1" onClick={() => setCurrentTab(true)}>
-              <a
-                class="bg-white active:bg-gray-500 inline-block py-2 px-4 text-blue-400 hover:text-blue-600 font-semibold"
-                href="/#"
-              >
-                Us
-              </a>
+              <a class={currentTab ? activeTab : idleTab}>Us</a>
             </li>
           </ul>
         </div>

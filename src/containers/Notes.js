@@ -83,7 +83,7 @@ const Notes = (props) => {
   return (
     <div class="note">
       {note && (
-        <div class="max-w-full max-w-xs">
+        <div class="max-w-full max-w-xs bg-gray-400 h-screen">
           <form class="px-16 py-8 mb-4 h-full" onSubmit={handleSubmit}>
             <div
               id="note-card"
@@ -91,7 +91,7 @@ const Notes = (props) => {
             >
               <div class="flex pt-4 items-center border-b border-blue-200 py-2 mx-6">
                 <input
-                  class="appearance-none bg-transparent border-none w-full text-gray-800 py-1 leading-tight focus:outline-none"
+                  class="appearance-none bg-white border-none w-full font-bold text-black py-1 leading-tight focus:outline-none"
                   id="title"
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder={title ? title : "New Note"}
