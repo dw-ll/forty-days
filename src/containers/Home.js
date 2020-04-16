@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
-import classNames from "classnames";
 import TextLoop from "react-text-loop";
 import Lottie from "react-lottie";
 import home from "../home2.json";
@@ -45,9 +44,6 @@ const Home = (props) => {
         });
         setNotes(notes);
         setAllNotes(allNotes);
-
-        console.log(notes);
-        console.log(allNotes);
       } catch (e) {
         alert(e);
       }

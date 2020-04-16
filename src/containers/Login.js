@@ -17,7 +17,6 @@ const Login = (props) => {
     return fields.email.length > 0 && fields.password.length > 0;
   }
   async function handleSubmit(e) {
-    console.log("in submit");
     e.preventDefault();
     setIsLoading(true);
     try {

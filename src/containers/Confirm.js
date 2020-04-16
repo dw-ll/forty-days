@@ -22,7 +22,6 @@ const Confirm = (props) => {
     }
   }
   function validateConfirmationForm() {
-    console.log("validating confirmation code");
     return fields.confirmationCode.length > 0;
   }
   return (

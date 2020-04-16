@@ -35,7 +35,6 @@ const CreateNote = (props) => {
       await createNote({ note });
       props.history.push("/");
     } catch (e) {
-      console.log(e);
       alert(e);
       setIsLoading(false);
     }
@@ -55,13 +54,15 @@ const CreateNote = (props) => {
               <div
                 id="note-card"
                 class="max-wm-sm rounded shadow-lg mt-12 bg-gray-100 lg:min-w-full"
-            
               >
                 <div id="note-content" class="px-6 py-4">
                   <div class="font-bold text-2x pt-4">
                     {note.title ? note.title : "New Note"}
                   </div>
-                  <p class="text-gray-700 text-base mt-8 px-2" style={{whiteSpace:'pre-wrap'}}>
+                  <p
+                    class="text-gray-700 text-base mt-8 px-2"
+                    style={{ whiteSpace: "pre-wrap" }}
+                  >
                     {note.content
                       ? note.content
                       : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."}
