@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { useFormFields } from "../libs/hooksLib";
 import { API } from "aws-amplify";
+import { ToastContainer, toast } from "react-toastify";
+
 import BlockUi from "react-block-ui";
 import config from "../config";
 
@@ -12,7 +14,6 @@ const CreateNote = (props) => {
     attachment: null,
   });
   const [isLoading, setIsLoading] = useState(false);
-
   function validateNote() {
     return note.content.length > 0;
   }
@@ -48,6 +49,7 @@ const CreateNote = (props) => {
   return (
     <BlockUi blocking={isLoading}>
       <div class="page-wrapper flex mb-4 h-screen ">
+        <ToastContainer />
         <div class="left-half hidden lg:flex w-1/2 py-12 h-full bg-gray-400">
           <div class="max-w-full max-w-xs">
             <form class="px-16 py-8 mb-4 lg:min-w-full" onSubmit={handleSubmit}>

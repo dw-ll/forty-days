@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Forty Days",
+  "name": "A space to share your thoughts via journaling, during the COVID-19 pandemic.",
   "icons": [
     {
       "src": "android-chrome-192x192.png",
