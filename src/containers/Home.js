@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
 import TextLoop from "react-text-loop";
 import Lottie from "react-lottie";
-import home from "../home2.json";
+import home from "../home.json";
 import "../styles/app.css";
 const lottieOptions = {
   loop: true,
@@ -201,8 +201,8 @@ const Home = (props) => {
   const renderLanding = () => {
     return (
       <div>
-        <div class="w-screen bg-gray-400 smlandscape:h-1/2 md:py-12 md:h-half mdlandscape:h-screen lg:py-8 lg:h-forty xl:h-half max-h-half">
-          <div class="header-content flex pt-8 md:px-2">
+        <div class="w-screen bg-gray-400 lg:h-half">
+          <div class="header-content container flex justify-center items-center pt-8 md:px-2">
             <div class="md:w-3/4 pb-2 xl:pt-12 xl:pl-10">
               <div class="ml-4 mb-2 md:hidden">
                 <Lottie options={lottieOptions} height={150} width={150} />
@@ -240,7 +240,7 @@ const Home = (props) => {
           </div>
         </div>
 
-        <div class="content inline-flex">
+        <div class="content container flex mx-auto justify-center items-center">
           <div class="lg:w-3/4 xs:pt-8 md:pt-16 md:pr-4 lg:pr-0 md:flex">
             <div class="lg:hidden md:w-1/4 md:ml-2 md:pl-2">
               <lottie-player
@@ -254,7 +254,7 @@ const Home = (props) => {
               ></lottie-player>
             </div>
             <div class="body-content md:w-3/4 md:ml-8 lg:ml-0 xl:ml-4 lg:pt-16 xxl:ml-64">
-              <h2 class="text-sm ml-3 sm:ml-6 smlandscape:ml-4 md:ml-12 md:pl-0 md:pt-4 md:text-2xl lg:text-xl lg:ml-0 xl:ml-4 lg:pl-8 xl:text-3xl font-bold">
+              <h2 class="text-sm ml-3 sm:ml-6 smlandscape:ml-3 md:ml-12 md:pl-0 md:pt-4 md:text-2xl lg:text-xl lg:ml-0 xl:ml-4 lg:pl-8 xl:text-3xl font-bold">
                 Share how you're feeling, anonymously.
               </h2>
               <h2 class="md:hidden pl-3 text-md pr-2 text-gray-700">
