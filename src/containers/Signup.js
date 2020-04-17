@@ -26,20 +26,18 @@ const Signup = (props) => {
   }
   async function handleSubmit(event) {
     event.preventDefault();
-    setIsLoading(true);
     try {
-      const newUser = await Auth.signUp({
+      await Auth.signUp({
         username: fields.email,
         password: fields.password,
       });
       setIsLoading(false);
-      setNewUser(newUser);
     } catch (e) {
       if (e.code === "UsernameExistsException") {
         setIsLoading(false);
         Auth.resendSignUp(fields.email);
         alert(
-          "Look's like you still haven't confirmed your email, check your inbox for a confirmation code!"
+          "We've sent you an e-mail to confirm your account, please check your inbox."
         );
         setConfirmationForm(true);
       } else {
@@ -180,6 +178,14 @@ const Signup = (props) => {
               </form>
             </BlockUi>
           </div>
+        </div>
+        <div class="text-sm  pt-2 text-gray-700">
+          We want your notes to be secure. Make sure your password meets the
+          following;
+        </div>
+        <div class="text-sm  text-gray-700">
+          8 characters long, including a special character, uppercase letter and
+          number.
         </div>
       </div>
     );

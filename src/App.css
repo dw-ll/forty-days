@@ -23,6 +23,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.small-lottie{
+  margin:12px important!
+}
 
 .App-link {
   color: #61dafb;

@@ -11,6 +11,6 @@ export const lottieOptions = {
 };
 export const lottieStyles = {
   overflow: "hidden",
-  margin: "0px !important",
+  "margin-left": "12px !important",
   outline: "none",
 };

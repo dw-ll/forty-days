@@ -17,7 +17,7 @@ const NoteModal = (props) => {
             </div>
 
             <div class="my-5 text-gray-700 text-xl leading-relaxed overflow-scroll border-b w-full">
-              <p>{props.note.content}</p>
+              <p style={{ whiteSpace: "pre-wrap" }}>{props.note.content}</p>
             </div>
 
             <div class="flex justify-end pt-2">

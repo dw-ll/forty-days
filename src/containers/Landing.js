@@ -3,6 +3,7 @@ import Lottie from "react-lottie";
 import TextLoop from "react-text-loop";
 import { lottieOptions, lottieStyles } from "../libs/lottie";
 import { phrases } from "../libs/phrases";
+import "../App.css";
 
 const Landing = (props) => {
   return (
@@ -11,7 +12,12 @@ const Landing = (props) => {
         <div class="header-content container flex justify-center items-center pt-8 md:px-2">
           <div class="md:w-3/4 pb-2 xl:pt-12 xl:pl-10">
             <div class="ml-4 mb-2 md:hidden">
-              <Lottie options={lottieOptions} height={150} width={150} />
+              <Lottie
+                className="small-lottie"
+                options={lottieOptions}
+                height={150}
+                width={150}
+              />
             </div>
             <div class=" xs:mt-4 md:py-8">
               <h1 class="text-xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-8 galaxylandscape:py-2 galaxylandscape:text-2xl">
