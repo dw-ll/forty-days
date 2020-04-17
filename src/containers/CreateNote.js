@@ -62,7 +62,7 @@ const CreateNote = (props) => {
                     {note.title ? note.title : "New Note"}
                   </div>
                   <p
-                    class="text-gray-700 text-base mt-8 px-2"
+                    class="text-gray-700 text-base mt-8"
                     style={{ whiteSpace: "pre-wrap" }}
                   >
                     {note.content
