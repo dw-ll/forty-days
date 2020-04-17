@@ -28,61 +28,31 @@ const Login = (props) => {
     }
   }
   return (
-    <div class="signup bg-gray-400 h-screen">
-      <div class="container mx-auto h-full flex justify-center items-center">
-        <div class="max-w-sm md:w-1/3">
-          <BlockUi tag="div" blocking={isLoading}>
-            <h1 class="font-bold my-6 text-center text-xl md:text-3xl text-gray-700">
-              Login to Forty Days
-            </h1>
-            <form
-              class="bg-white shadow-lg rounded px-8 pt-8 pb-6 mb-4"
-              onSubmit={handleSubmit}
-            >
-              <div class="mb-4">
-                <label
-                  class="block text-gray-700 text-sm font-bold mb-2"
-                  for="email"
-                >
-                  Email Address
-                </label>
+    <div class="bg-gray-400 min-h-screen flex flex-col">
+      <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
+        <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+          <h1 class="mb-8 xs:text-2xl text-3xl text-center text-gray-700">
+            Log in to Forty Days
+          </h1>
+          <input
+            type="text"
+            class="block border border-grey-light w-full p-3 rounded mb-4"
+            name="email"
+            placeholder="Email"
+          />
 
-                <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  type="text"
-                  id="email"
-                  placeholder="Email Address"
-                  onChange={handleFieldChange}
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  class="block text-gray-700 text-sm font-bold mb-2"
-                  for="email"
-                >
-                  Password
-                </label>
-
-                <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  onChange={handleFieldChange}
-                />
-              </div>
-
-              <div class="flex items-center justify-between">
-                <button
-                  class="bg-gray-500 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded focus:outline-none"
-                  disabled={!validateSignIn()}
-                  type="submit"
-                >
-                  Log In
-                </button>
-              </div>
-            </form>
-          </BlockUi>
+          <input
+            type="password"
+            class="block border border-grey-light w-full p-3 rounded mb-4"
+            name="password"
+            placeholder="Password"
+          />
+          <button
+            type="submit"
+            class="w-full text-center py-3 rounded bg-gray-200 text-gray-700 hover:bg-gray-600 focus:outline-none my-1"
+          >
+            Log In
+          </button>
         </div>
       </div>
     </div>

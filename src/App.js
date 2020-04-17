@@ -72,7 +72,7 @@ function App() {
                 <a
                   href="/"
                   onClick={handleLogout}
-                  class="block px-2 py-2 font-semibold hover:bg-gray-100 text-right sm:mt-0"
+                  class="block px-2 py-2 font-semibold hover:bg-gray-100 text-right sm:mt-0 cursor-pointer"
                 >
                   Logout
                 </a>
@@ -83,13 +83,13 @@ function App() {
               <div class={burgerClass}>
                 <a
                   href="/login"
-                  class="block px-1 py-1 md:px-2 md:py-4  font-semibold hover:bg-gray-100 text-right sm:mt-0"
+                  class="block px-1 py-1 text-gray-700 hover:text-gray-900 md:px-2 md:py-4  font-semibold  text-right sm:mt-0 cursor-pointer"
                 >
                   Login
                 </a>
                 <a
                   href="/signup"
-                  class="px-1 py-1 block md:px-2 md:py-4 font-semibold hover:bg-gray-100 text-right sm:mt-0 sm:ml-2"
+                  class="px-1 py-1 text-gray-700 hover:text-gray-900 block md:px-2 md:py-4 font-semibold  text-right sm:mt-0 sm:ml-2 cursor-pointer"
                 >
                   Sign up
                 </a>

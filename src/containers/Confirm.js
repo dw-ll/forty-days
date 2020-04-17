@@ -47,7 +47,6 @@ const Confirm = (props) => {
                   placeholder="Confirmation Code"
                   onChange={handleFieldChange}
                 />
-                <h6> Please check your email to confirm your account.</h6>
               </div>
               <div class="flex items-center justify-between">
                 <button
@@ -55,7 +54,7 @@ const Confirm = (props) => {
                   disabled={!validateConfirmationForm()}
                   type="submit"
                 >
-                  Sign In
+                  Confirm Account
                 </button>
               </div>
             </form>
