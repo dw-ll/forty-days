@@ -6,10 +6,10 @@ const Notes = (props) => {
     <div class="notes w-screen py-8 px-12">
       <div class="max-w-sm mb-2 w-screen">
         <ul class="flex">
-          <li class="-mb-px mr-1" onClick={() => props.setCurrentTab(false)}>
+          <li class="-mb-px mr-1 cursor-pointer" onClick={() => props.setCurrentTab(false)}>
             <a class={!props.currentTab ? activeTab : idleTab}>You</a>
           </li>
-          <li class="mr-1" onClick={() => props.setCurrentTab(true)}>
+          <li class="mr-1 cursor-pointer" onClick={() => props.setCurrentTab(true)}>
             <a class={props.currentTab ? activeTab : idleTab}>Us</a>
           </li>
         </ul>

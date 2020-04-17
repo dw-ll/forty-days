@@ -4,50 +4,34 @@ const NoteModal = (props) => {
   return (
     <>
       <div
-        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none "
+        class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden outline-none focus:outline-none flex justify-center items-center animated fadeIn fase"
         onClick={() => props.setNoteModal(false)}
       >
-        <div className="relative w-auto px-6 my-6 mx-auto max-w-3xl x:px-2">
-          {/*content*/}
-          <div className="border-0 rounded-lg shadow-lg sm:px-2 relative flex flex-col w-full bg-white outline-none focus:outline-none">
-            {/*header*/}
-            <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
-              <h3 className="text-3xl font-semibold">{props.note.title}</h3>
-              <button
-                className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                onClick={() => props.setNoteModal(false)}
-              >
-                <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none pl-2 pt-2">
-                  ×
-                </span>
-              </button>
-            </div>
-            {/*body*/}
-            <div className="relative p-6 flex-auto">
-              <p className="my-4 text-gray-600 text-xl leading-relaxed">
-                {props.note.content}
+        <div class="border border-gray-600 shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+          <div class="modal-content py-4 text-left px-6">
+            <div class="flex justify-between items-center pb-3">
+              <p class="text-2xl font-bold border-b w-full">
+                {props.note.title}
               </p>
+              <div class="modal-close cursor-pointer z-50"></div>
             </div>
-            {/*footer*/}
-            <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+
+            <div class="my-5 text-gray-700 text-xl leading-relaxed overflow-scroll border-b w-full">
+              <p>{props.note.content}</p>
+            </div>
+
+            <div class="flex justify-end pt-2">
               <button
-                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
-                type="button"
-                style={{ transition: "all .15s ease" }}
+                class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300"
                 onClick={() => props.setNoteModal(false)}
               >
-                Close
+                Cancel
               </button>
-
               <a
                 href={`notes/${props.note.noteId}`}
                 class={props.currentTab ? "hidden" : ""}
               >
-                <button
-                  className="bg-gray-500 hover:bg-gray-800 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                  style={{ transition: "all .15s ease" }}
-                >
+                <button class="focus:outline-none px-4 bg-gray-500 p-3 ml-3 rounded-lg text-white hover:bg-gray-800">
                   Edit
                 </button>
               </a>
@@ -59,4 +43,5 @@ const NoteModal = (props) => {
     </>
   );
 };
+
 export default NoteModal;

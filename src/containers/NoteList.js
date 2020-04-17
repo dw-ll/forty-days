@@ -1,9 +1,6 @@
 import React from "react";
 
 const NoteList = (props) => {
-  console.log(props.currentTab);
-  console.log(props.allNotes);
-  console.log(props.notes);
   return [{}]
     .concat(!props.currentTab ? props.notes : props.allNotes)
     .map((note, i) =>
