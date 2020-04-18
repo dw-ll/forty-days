@@ -52,6 +52,7 @@ const Signup = (props) => {
   }
   async function handleConfirmationSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
     try {
       await Auth.confirmSignUp(fields.email, fields.confirmationCode);
       await Auth.signIn(fields.email, fields.password);
@@ -59,7 +60,8 @@ const Signup = (props) => {
       setConfirmationForm(true);
       props.history.push("/");
     } catch (e) {
-      Notify.error(e);
+      setIsLoading(false);
+      Notify.error(e.message);
     }
   }
 
@@ -82,36 +84,33 @@ const Signup = (props) => {
           draggable
           pauseOnHover
         />
-        <div class="login px-6 xs:py-8 x:py-12 sm:flex sm:pt-24 sm:justify-center bg-gray-400 h-screen">
-          <div class="w-full max-w-xs">
+        <div class="bg-gray-400 min-h-screen flex flex-col">
+          <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
             <BlockUi blocking={isLoading}>
-              <form
-                class="bg-white shadow-lg rounded px-8 pt-8 pb-6 mb-4"
-                onSubmit={handleConfirmationSubmit}
-                type="tel"
-              >
-                <div class="mb-4">
-                  <label
-                    class="block text-gray-700 text-sm font-bold mb-2"
-                    for="confirmation-code"
-                  >
-                    Confirmation Code
-                  </label>
+              <form id="form" class="mt-6" onSubmit={handleConfirmationSubmit}>
+                <div
+                  id="form-content"
+                  class="bg-white px-6 py-8 rounded shadow-md text-black w-full"
+                >
+                  <h1 class="mb-8 xs:text-xl text-2xl font-bold text-center text-gray-700">
+                    Confirm Your Account
+                  </h1>
+
                   <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text"
+                    class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
                     id="confirmationCode"
                     placeholder="Confirmation Code"
                     value={fields.confirmationCode}
                     onChange={handleFieldChange}
                   />
-                </div>
-                <div class="flex items-center justify-between">
+
                   <button
-                    class="bg-gray-200 hover:bg-gray-600 font-bold py-2 px-4 rounded focus:outline-none"
+                    type="submit"
+                    class="w-full text-center py-3 rounded font-bold bg-gray-200 text-gray-700 hover:bg-gray-600 focus:outline-none my-1"
                     disabled={
                       !validateConfirmationForm(fields.confirmationCode)
                     }
-                    type="submit"
                   >
                     Confirm Account
                   </button>
@@ -167,6 +166,7 @@ const Signup = (props) => {
                     name="email"
                     id="email"
                     placeholder="Email"
+                    value={fields.email}
                     onChange={handleFieldChange}
                   />
 
@@ -176,6 +176,7 @@ const Signup = (props) => {
                     class="block border border-grey-light w-full p-3 rounded mb-2 focus:outline-none focus:shadow-outline"
                     name="password"
                     placeholder="Password"
+                    value={fields.password}
                     onChange={handleFieldChange}
                     onMouseEnter={popInstructions}
                   />
@@ -192,7 +193,9 @@ const Signup = (props) => {
                   <button
                     type="submit"
                     class="w-full text-center py-3 rounded font-bold bg-gray-200 text-gray-700 hover:bg-gray-600 focus:outline-none my-1"
-                    disabled={!validateForm(fields.email, fields.password)}
+                    disabled={
+                      !validateForm(fields, fields.email, fields.password)
+                    }
                   >
                     Create Account
                   </button>
@@ -204,7 +207,9 @@ const Signup = (props) => {
                 Already have an account?
               </h1>
               <a href="/login">
-                <h1 class="text-gray-700 hover:text-gray-900 font-bold">Log in</h1>
+                <h1 class="text-gray-700 hover:text-gray-900 font-bold">
+                  Log in
+                </h1>
               </a>
             </span>
           </div>
