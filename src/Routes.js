@@ -6,7 +6,6 @@ import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
 import SignUp from "./containers/Signup";
-import Confirm from "./containers/Confirm";
 import CreateNote from "./containers/CreateNote";
 import NoteEdit from "./containers/NoteEdit";
 import Unknown from "./containers/Unknown";

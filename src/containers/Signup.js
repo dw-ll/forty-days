@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useFormFields } from "../libs/hooksLib.js";
 import { Auth } from "aws-amplify";
-import { ToastContainer } from "react-toastify";
-import { notifyError, notifyConfirmation } from "../libs/notify";
+import { ToastContainer, Flip } from "react-toastify";
+import { Notify } from "../libs/notify";
 import { validateForm, validateConfirmationForm } from "../libs/validate";
 import BlockUi from "react-block-ui";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,32 +18,35 @@ const Signup = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showConfirmationForm, setConfirmationForm] = useState(false);
   const [revealPassword, triggerRevealPassword] = useState(false);
-  const [activeToolTip, setToolTip] = useState(false);
+  const [visited, setVisited] = useState(false);
+
+  const maskPassword = () => {
+    triggerRevealPassword(!revealPassword);
+  };
 
   async function handleSubmit(event) {
     event.preventDefault();
-    if (fields.password !== fields.confirmPassword) {
-      notifyError("Passwords don't match.");
-      return;
-    }
+    setIsLoading(true);
     try {
       const newSignUp = await Auth.signUp({
         username: fields.email,
         password: fields.password,
       });
-
       setNewUser(newSignUp);
+      setIsLoading(false);
     } catch (e) {
       if (e.code === "UsernameExistsException") {
         Auth.resendSignUp(fields.email);
-
+        setIsLoading(false);
         setConfirmationForm(true);
       } else if (e.code === "InvalidParameterException") {
-        notifyError(
+        Notify.error(
           "Your password must be at least 8 characters and include: a special character, number and uppercase letter."
         );
+        setIsLoading(false);
       } else {
-        notifyError(e.message);
+        Notify.error(e.message);
+        setIsLoading(false);
       }
     }
   }
@@ -56,13 +59,13 @@ const Signup = (props) => {
       setConfirmationForm(true);
       props.history.push("/");
     } catch (e) {
-      notifyError(e);
+      Notify.error(e);
     }
   }
 
   function renderConfirmationForm() {
     if (!fields.confirmationCode) {
-      notifyConfirmation(
+      Notify.general(
         "We've sent you an e-mail to confirm your account, please check your inbox."
       );
     }
@@ -70,8 +73,8 @@ const Signup = (props) => {
       <>
         <ToastContainer
           position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
+          autoClose={10000}
+          hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
           rtl={false}
@@ -121,16 +124,26 @@ const Signup = (props) => {
     );
   }
 
+  function popInstructions() {
+    if (fields.password.length === 0 && !visited) {
+      setVisited(true);
+      Notify.general(
+        "Your password must be at least 8 characters and include: a special character, number and uppercase letter."
+      );
+    }
+  }
+
   function renderForm() {
     return (
       <>
         <ToastContainer
           position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
+          autoClose={15000}
+          hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
           rtl={false}
+          transition={Flip}
           pauseOnVisibilityChange
           draggable
           pauseOnHover
@@ -138,60 +151,66 @@ const Signup = (props) => {
 
         <div class="bg-gray-400 min-h-screen flex flex-col">
           <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
-            <form id="form" class="mt-6" onSubmit={handleSubmit}>
-              <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                <h1 class="mb-8 xs:text-xl text-2xl font-bold text-center text-gray-700">
-                  Sign up with Forty Days
-                </h1>
+            <BlockUi blocking={isLoading}>
+              <form id="form" class="mt-6" onSubmit={handleSubmit}>
+                <div
+                  id="form-content"
+                  class="bg-white px-6 py-8 rounded shadow-md text-black w-full"
+                >
+                  <h1 class="mb-8 xs:text-xl text-2xl font-bold text-center text-gray-700">
+                    Sign up with Forty Days
+                  </h1>
 
-                <input
-                  type="text"
-                  class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  onChange={handleFieldChange}
-                />
+                  <input
+                    type="text"
+                    class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    onChange={handleFieldChange}
+                  />
 
-                <div class="relative">
                   <input
                     type={revealPassword ? "text" : "password"}
                     id="password"
-                    class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
+                    class="block border border-grey-light w-full p-3 rounded mb-2 focus:outline-none focus:shadow-outline"
                     name="password"
                     placeholder="Password"
                     onChange={handleFieldChange}
+                    onMouseEnter={popInstructions}
                   />
-                  <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                    <svg
-                      class="h-6 text-gray-700"
-                      fill="bg-gray-700"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="bg-gray-700"
-                        d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
 
-                <button
-                  type="submit"
-                  class="w-full text-center py-3 rounded font-bold bg-gray-200 text-gray-700 hover:bg-gray-600 focus:outline-none my-1"
-                  disabled={!validateForm(fields.email, fields.password)}
-                >
-                  Create Account
-                </button>
-              </div>
-            </form>
+                  <a class="text-left cursor-pointer">
+                    <h1
+                      class="text-gray-800 font-bold md:mb-6"
+                      onClick={maskPassword}
+                    >
+                      {revealPassword ? "Hide" : "Show"} Password
+                    </h1>
+                  </a>
+
+                  <button
+                    type="submit"
+                    class="w-full text-center py-3 rounded font-bold bg-gray-200 text-gray-700 hover:bg-gray-600 focus:outline-none my-1"
+                    disabled={!validateForm(fields.email, fields.password)}
+                  >
+                    Create Account
+                  </button>
+                </div>
+              </form>
+            </BlockUi>
+            <span class="flex">
+              <h1 class=" text-gray-700 font-bold pr-1">
+                Already have an account?
+              </h1>
+              <a href="/login">
+                <h1 class="text-gray-700 hover:text-gray-900 font-bold">Log in</h1>
+              </a>
+            </span>
           </div>
         </div>
       </>
     );
-  }
-  function handleToolTip() {
-    setToolTip(!activeToolTip);
   }
 
   return (

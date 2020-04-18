@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, withRouter, useHistory } from "react-router-dom";
+import {withRouter, useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import classNames from "classnames";
 import "./styles/app.css";

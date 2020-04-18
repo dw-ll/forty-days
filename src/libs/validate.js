@@ -5,3 +5,7 @@ export function validateForm(email, password) {
 export function validateConfirmationForm(code) {
   return code.length > 0;
 }
+
+export function validateSignIn(email, password) {
+  return email.length > 0 && password.length > 0;
+}

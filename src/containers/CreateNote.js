@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFormFields } from "../libs/hooksLib";
 import { API } from "aws-amplify";
-import { ToastContainer, toast } from "react-toastify";
 
 import BlockUi from "react-block-ui";
 import config from "../config";
@@ -18,9 +17,6 @@ const CreateNote = (props) => {
     return note.content.length > 0;
   }
 
-  function handleFileChange(event) {
-    file.current = event.target.files[0];
-  }
   async function handleSubmit(event) {
     event.preventDefault();
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
@@ -49,7 +45,6 @@ const CreateNote = (props) => {
   return (
     <BlockUi blocking={isLoading}>
       <div class="page-wrapper flex mb-4 h-screen ">
-        <ToastContainer />
         <div class="left-half hidden lg:flex w-1/2 py-12 h-full bg-gray-400">
           <div class="max-w-full max-w-xs">
             <form class="px-16 py-8 mb-4 lg:min-w-full" onSubmit={handleSubmit}>

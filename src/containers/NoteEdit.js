@@ -42,7 +42,7 @@ const NoteEdit = (props) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const res = await saveNote({
+      await saveNote({
         title,
         content,
       });
