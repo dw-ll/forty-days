@@ -14,3 +14,9 @@ export const lottieStyles = {
   "margin-left": "12px !important",
   outline: "none",
 };
+export const lottieSmallStyles = {
+  overflow: "hidden",
+  marginLeft: "15px !important",
+  backgroundColor: "black !important",
+  outline: "none",
+};

@@ -5,6 +5,9 @@ module.exports = {
   theme: {
     screens: {
       xs: { max: "575px" }, // Mobile (iPhone 3 - iPhone XS Max).
+      xsportrait: {
+        raw: "(max-device-width:575px) and (orientation:portrait)",
+      },
       xslandscape: {
         raw: "(max-device-width:575px) and (orientation:landscape)",
       },
@@ -14,6 +17,7 @@ module.exports = {
       xlandscape: {
         raw: "(device-width:812px) and (orientation:landscape)",
       },
+      max: { max: "812px" },
       sm: "640px",
       smlandscape: {
         raw: "(max-device-width:768px) and (orientation:landscape)",

@@ -1,8 +1,9 @@
 import React from "react";
 import Lottie from "react-lottie";
 import TextLoop from "react-text-loop";
-import { lottieOptions, lottieStyles } from "../libs/lottie";
+import { lottieOptions, lottieStyles, lottieSmallStyles } from "../libs/lottie";
 import { phrases } from "../libs/phrases";
+import home from "../home.json";
 import "../App.css";
 
 const Landing = (props) => {
@@ -10,27 +11,28 @@ const Landing = (props) => {
     <div>
       <div class="w-screen bg-gray-400 lg:h-half">
         <div class="header-content container flex justify-center items-center pt-8 md:px-2">
-          <div class="md:w-3/4 pb-2 xl:pt-12 xl:pl-10">
+          <div class="container md:w-3/4 pb-2 xl:pt-12 xl:pl-10">
             <div class="ml-4 mb-2 md:hidden">
               <Lottie
                 className="small-lottie"
                 options={lottieOptions}
                 height={150}
                 width={150}
+                style={lottieSmallStyles}
               />
             </div>
             <div class=" xs:mt-4 md:py-8">
-              <h1 class="text-xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-8 galaxylandscape:py-2 galaxylandscape:text-2xl">
+              <h1 class="xs:text-center text-xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-8 galaxylandscape:py-2 galaxylandscape:text-2xl">
                 Forty Days
               </h1>
 
-              <h2 class="text-sm sm:text-xl lg:text-2xl px-6 md:px-8 md:mt-4">
+              <h2 class="xs:text-center text-sm sm:text-xl lg:text-2xl px-6 md:px-8 md:mt-4">
                 A space to <TextLoop children={phrases} /> during the COVID-19
                 pandemic.
               </h2>
             </div>
 
-            <div class="button-wrapper smlandscape:items-start smlandscape:ml-0 smlandscape:px-6 mt-4 ml-6 xs:pb-4 md:mt-0 sm:px-16 md:px-6 galaxylandscape:px-0 lg:px-6 md:ml-0 items-end">
+            <div class="container flex sm:items-center justify-center  md:block button-wrapper mt-4 mx-36 pb-4 md:mt-0 md:px-6 galaxylandscape:px-0 lg:px-6 md:ml-0 items-end">
               <a href="/signup">
                 <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-2 rounded-md md:rounded-full md:w-48 lg:w-64 md:text-xl">
                   Sign Up
