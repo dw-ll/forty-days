@@ -22,7 +22,7 @@ const Landing = (props) => {
               />
             </div>
             <div class=" xs:mt-4 md:py-8">
-              <h1 class="xs:text-center text-xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-8 galaxylandscape:py-2 galaxylandscape:text-2xl">
+              <h1 class="xs:text-center text-2xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-8 galaxylandscape:py-2 galaxylandscape:text-2xl">
                 Forty Days
               </h1>
 
@@ -68,7 +68,7 @@ const Landing = (props) => {
             ></lottie-player>
           </div>
           <div class="body-content md:w-3/4 md:ml-8 lg:ml-0 xl:ml-4 lg:pt-16 xxl:ml-10">
-            <h2 class="text-sm ml-3 sm:ml-6 smlandscape:ml-3 md:ml-12 md:pl-0 md:pt-4 md:text-2xl lg:text-xl lg:ml-0 xl:ml-4 lg:pl-8 xl:text-3xl font-bold">
+            <h2 class="text-lg ml-3 sm:ml-6 smlandscape:ml-3 md:ml-12 md:pl-0 md:pt-4 md:text-2xl lg:text-xl lg:ml-0 xl:ml-4 lg:pl-8 xl:text-3xl font-semibold">
               Share how you're feeling, anonymously.
             </h2>
             <h2 class="md:hidden pl-3 text-md pr-2 text-gray-700">
