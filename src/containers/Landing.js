@@ -22,7 +22,7 @@ const Landing = (props) => {
               />
             </div>
             <div class=" xs:mt-4 md:py-8">
-              <h1 class="xs:text-center text-2xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-8 galaxylandscape:py-2 galaxylandscape:text-2xl">
+              <h1 class="xs:text-center text-xl md:text-4xl text-gray-900 font-semibold px-6 md:mt-6 md:px-8 galaxylandscape:py-2 galaxylandscape:text-2xl">
                 Forty Days
               </h1>
 
