@@ -19,6 +19,7 @@ const Signup = (props) => {
   const [showConfirmationForm, setConfirmationForm] = useState(false);
   const [revealPassword, triggerRevealPassword] = useState(false);
   const [visited, setVisited] = useState(false);
+  const [notified, setNotified] = useState(false);
 
   const maskPassword = () => {
     triggerRevealPassword(!revealPassword);
@@ -31,6 +32,11 @@ const Signup = (props) => {
       );
     }
   }
+  function popConfirm() {
+    Notify.general(
+      "We've sent you an e-mail to confirm your account, please check your inbox."
+    );
+  }
   async function handleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
@@ -39,7 +45,8 @@ const Signup = (props) => {
         username: fields.email,
         password: fields.password,
       });
-      setNewUser(newSignUp);
+
+      setConfirmationForm(true);
       setIsLoading(false);
     } catch (e) {
       if (e.code === "UsernameExistsException") {
@@ -73,7 +80,8 @@ const Signup = (props) => {
   }
 
   function renderConfirmationForm() {
-    if (!fields.confirmationCode) {
+    if (!fields.confirmationCode && !notified) {
+      setNotified(true);
       Notify.general(
         "We've sent you an e-mail to confirm your account, please check your inbox."
       );
@@ -91,8 +99,8 @@ const Signup = (props) => {
           draggable
           pauseOnHover
         />
-        <div class="bg-gray-400 min-h-screen flex flex-col">
-          <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
+        <div class="bg-gray-400 min-h-screen md:flex  flex-col">
+          <div class="container max-w-sm mx-auto  xs:py-12 flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
             <BlockUi blocking={isLoading}>
               <form id="form" class="mt-6" onSubmit={handleConfirmationSubmit}>
                 <div
