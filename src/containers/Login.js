@@ -5,6 +5,7 @@ import { ToastContainer, Flip } from "react-toastify";
 import { Notify } from "../libs/notify";
 import { useFormFields } from "../libs/hooksLib";
 import { validateSignIn } from "../libs/validate";
+import { formStyle } from "../styles/form";
 import "react-block-ui/style.css";
 
 const Login = (props) => {
@@ -40,17 +41,15 @@ const Login = (props) => {
         pauseOnHover
       />
       <div class="bg-gray-400 min-h-screen md:flex flex-col">
-        <div class="container max-w-sm mx-auto xs:py-12 flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4 w-full">
+        <div class={formStyle.wrapper}>
           <BlockUi blocking={isLoading}>
-            <form id="form" class="mt-6" onSubmit={handleSubmit}>
-              <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                <h1 class="mb-8 xs:text-xl text-2xl text-center text-gray-700 font-bold">
-                  Log in to Forty Days
-                </h1>
+            <form id="form" class={formStyle.form} onSubmit={handleSubmit}>
+              <div class={formStyle.body}>
+                <h1 class={formStyle.header}>Log in to Forty Days</h1>
                 <input
                   type="text"
                   id="email"
-                  class="block border border-grey-light w-full p-3 rounded mb-4"
+                  class={formStyle.input}
                   name="email"
                   placeholder="Email"
                   onChange={handleFieldChange}
@@ -59,7 +58,7 @@ const Login = (props) => {
                 <input
                   type="password"
                   id="password"
-                  class="block border border-grey-light w-full p-3 rounded mb-4"
+                  class={formStyle.inputBottom}
                   name="password"
                   placeholder="Password"
                   onChange={handleFieldChange}
@@ -67,7 +66,7 @@ const Login = (props) => {
 
                 <button
                   type="submit"
-                  class="w-full text-center py-3 rounded bg-gray-200 text-gray-700 font-bold cursor-pointer hover:bg-gray-600 focus:outline-none my-1"
+                  class={formStyle.button}
                   disabled={!validateSignIn(fields.email, fields.password)}
                 >
                   Log In

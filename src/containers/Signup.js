@@ -4,6 +4,7 @@ import { Auth } from "aws-amplify";
 import { ToastContainer, Flip } from "react-toastify";
 import { Notify } from "../libs/notify";
 import { validateForm, validateConfirmationForm } from "../libs/validate";
+import { formStyle } from "../styles/form";
 import BlockUi from "react-block-ui";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -100,29 +101,27 @@ const Signup = (props) => {
           pauseOnHover
         />
         <div class="bg-gray-400 min-h-screen md:flex  flex-col">
-          <div class="container max-w-sm mx-auto  xs:py-12 flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
+          <div class={formStyle.wrapper}>
             <BlockUi blocking={isLoading}>
-              <form id="form" class="mt-6" onSubmit={handleConfirmationSubmit}>
-                <div
-                  id="form-content"
-                  class="bg-white px-6 py-8 rounded shadow-md text-black w-full"
-                >
-                  <h1 class="mb-8 xs:text-xl text-2xl font-bold text-center text-gray-700">
-                    Confirm Your Account
-                  </h1>
+              <form
+                id="form"
+                class={formStyle.form}
+                onSubmit={handleConfirmationSubmit}
+              >
+                <div id="form-content" class={formStyle.body}>
+                  <h1 class={formStyle.header}>Confirm Your Account</h1>
 
                   <input
                     type="text"
-                    class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
+                    class={formStyle.inputBottom}
                     id="confirmationCode"
                     placeholder="Confirmation Code"
                     value={fields.confirmationCode}
                     onChange={handleFieldChange}
                   />
-
                   <button
                     type="submit"
-                    class="w-full text-center py-3 rounded font-bold bg-gray-200 text-gray-700 hover:bg-gray-600 focus:outline-none my-1"
+                    class={formStyle.button}
                     disabled={
                       !validateConfirmationForm(fields.confirmationCode)
                     }
@@ -155,20 +154,15 @@ const Signup = (props) => {
         />
 
         <div class="bg-gray-400 min-h-screen md:flex flex-col">
-          <div class="container max-w-sm mx-auto xs:py-12 flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
+          <div class={formStyle.wrapper}>
             <BlockUi blocking={isLoading}>
-              <form id="form" class="mt-6" onSubmit={handleSubmit}>
-                <div
-                  id="form-content"
-                  class="bg-white px-6 py-8 rounded shadow-md text-black w-full"
-                >
-                  <h1 class="mb-8 xs:text-xl text-2xl font-bold text-center text-gray-700">
-                    Sign up with Forty Days
-                  </h1>
+              <form id="form" class={formStyle.form} onSubmit={handleSubmit}>
+                <div id="form-content" class={formStyle.body}>
+                  <h1 class={formStyle.header}>Sign up with Forty Days</h1>
 
                   <input
                     type="text"
-                    class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
+                    class={formStyle.input}
                     name="email"
                     id="email"
                     placeholder="Email"
@@ -179,7 +173,7 @@ const Signup = (props) => {
                   <input
                     type={revealPassword ? "text" : "password"}
                     id="password"
-                    class="block border border-grey-light w-full p-3 rounded mb-2 focus:outline-none focus:shadow-outline"
+                    class={formStyle.inputBottom}
                     name="password"
                     placeholder="Password"
                     value={fields.password}
@@ -198,10 +192,8 @@ const Signup = (props) => {
 
                   <button
                     type="submit"
-                    class="w-full text-center py-3 rounded font-bold bg-gray-200 text-gray-700 hover:bg-gray-600 focus:outline-none my-1"
-                    disabled={
-                      !validateForm(fields, fields.email, fields.password)
-                    }
+                    class={formStyle.button}
+                    disabled={!validateForm(fields.email, fields.password)}
                   >
                     Create Account
                   </button>
