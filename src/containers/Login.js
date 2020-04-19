@@ -75,6 +75,13 @@ const Login = (props) => {
               </div>
             </form>
           </BlockUi>
+          <span class="flex">
+            <a href="/login/reset">
+              <h1 class="text-gray-700 hover:text-gray-900 font-bold">
+                Forgot your password?
+              </h1>
+            </a>
+          </span>
         </div>
       </div>
     </>
