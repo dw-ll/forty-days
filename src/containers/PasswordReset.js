@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { useFormFields } from "../libs/hooksLib";
 import { Notify } from "../libs/notify";
 import { validateResetEmail, validateResetForm } from "../libs/validate";
+import { formStyle } from "../styles/form.js";
 
 const PasswordReset = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +13,7 @@ const PasswordReset = (props) => {
     email: "",
     newPassword: "",
     confirmNewPassword: "",
-    code: "",
+    confirmationCode: "",
   });
   const [confirmed, setConfirmed] = useState(false);
   const [codeSent, setCodeSent] = useState(false);
@@ -40,8 +41,8 @@ const PasswordReset = (props) => {
     try {
       await Auth.forgotPasswordSubmit(
         fields.email,
-        fields.code,
-        fields.password
+        fields.confirmationCode,
+        fields.newPassword
       );
       Notify.general("Password has been reset.");
       props.history.push("/login");
@@ -82,7 +83,6 @@ const PasswordReset = (props) => {
                     class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
                     id="email"
                     placeholder="Email Address"
-                    value={fields.email}
                     onChange={handleFieldChange}
                   />
 
@@ -119,7 +119,7 @@ const PasswordReset = (props) => {
         <div class="bg-gray-400 min-h-screen md:flex  flex-col">
           <div class="container max-w-sm mx-auto  xs:py-12 flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
             <BlockUi blocking={isConfirming}>
-              <form id="form" class="mt-6" onSubmit={sendCode}>
+              <form id="form" class="mt-6" onSubmit={confirmPassword}>
                 <div
                   id="form-content"
                   class="bg-white px-6 py-8 rounded shadow-md text-black w-full"
@@ -130,17 +130,28 @@ const PasswordReset = (props) => {
 
                   <input
                     type="text"
-                    class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
-                    id="code"
+                    class={formStyle.inputBottom}
+                    id="confirmationCode"
                     placeholder="Confirmation Code"
+                    value={fields.confirmationCode}
+                    onChange={handleFieldChange}
+                  />
+                  <input
+                    type={revealPassword ? "text" : "password"}
+                    id="newPassword"
+                    class={formStyle.inputBottom}
+                    name="newPassword"
+                    placeholder="Password"
+                    value={fields.newPassword}
                     onChange={handleFieldChange}
                   />
 
                   <input
-                    type={revealPassword ? "text" : "password"}
+                    type={"password"}
                     class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
-                    id="newPassword"
-                    placeholder="New Password"
+                    id="confirmNewPassword"
+                    value={fields.confirmNewPassword}
+                    placeholder="Confirm New Password"
                     onChange={handleFieldChange}
                   />
                   <a class="text-left cursor-pointer">
@@ -151,19 +162,15 @@ const PasswordReset = (props) => {
                       {revealPassword ? "Hide" : "Show"} Password
                     </h1>
                   </a>
-
-                  <input
-                    type={revealPassword ? "text" : "password"}
-                    class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
-                    id="confirmNewPassword"
-                    placeholder="Confirm New Password"
-                    onChange={handleFieldChange}
-                  />
-
                   <button
                     type="submit"
                     class="w-full text-center py-3 rounded font-bold bg-gray-200 text-gray-700 hover:bg-gray-600 focus:outline-none my-1"
-                    disabled={!validateResetEmail(fields.email)}
+                    disabled={
+                      !validateResetForm(
+                        fields.newPassword,
+                        fields.confirmNewPassword
+                      )
+                    }
                   >
                     Confirm Password Reset
                   </button>
