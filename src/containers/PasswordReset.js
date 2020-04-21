@@ -144,9 +144,20 @@ const PasswordReset = (props) => {
                   </h1>
 
                   <input
-                    autocomplete="false"
+                    id="confirmationCode"
+                    style={{ display: "none" }}
+                    type="tell"
+                    name="confirmation-code"
+                  />
+                  <input
+                    id="confirmationCode"
+                    style={{ display: "none" }}
+                    type="password"
+                    name="password"
+                  />
+                  <input
                     type="text"
-                    class={formStyle.inputBottom}
+                    class={formStyle.input}
                     id="confirmationCode"
                     placeholder="Confirmation Code"
                     value={fields.confirmationCode}
@@ -157,13 +168,13 @@ const PasswordReset = (props) => {
                     type={revealPassword ? "text" : "password"}
                     id="newPassword"
                     class={formStyle.inputBottom}
-                    name="newPassword"
+                    name="new-password"
                     placeholder="New Password"
                     value={fields.newPassword}
                     onChange={handleFieldChange}
                     onMouseEnter={popInstructions}
                   />
-
+                
                   <input
                     type="password"
                     class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
