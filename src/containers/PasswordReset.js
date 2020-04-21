@@ -20,9 +20,19 @@ const PasswordReset = (props) => {
   const [isSendingCode, setIsSendingCode] = useState(false);
   const [isConfirming, setIsConfirming] = useState(false);
   const [revealPassword, triggerRevealPassword] = useState(false);
+  const [visited, setVisited] = useState(false);
+
   const maskPassword = () => {
     triggerRevealPassword(!revealPassword);
   };
+  function popInstructions() {
+    if (fields.newPassword.length === 0 && !visited) {
+      setVisited(true);
+      Notify.general(
+        "Your password must be at least 8 characters and include: a special character, number and uppercase letter."
+      );
+    }
+  }
   async function sendCode(event) {
     event.preventDefault();
     setIsSendingCode(true);
@@ -119,7 +129,12 @@ const PasswordReset = (props) => {
         <div class="bg-gray-400 min-h-screen md:flex  flex-col">
           <div class="container max-w-sm mx-auto  xs:py-12 flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
             <BlockUi blocking={isConfirming}>
-              <form id="form" class="mt-6" onSubmit={confirmPassword}>
+              <form
+                action=""
+                autocomplete="false"
+                class="mt-6"
+                onSubmit={confirmPassword}
+              >
                 <div
                   id="form-content"
                   class="bg-white px-6 py-8 rounded shadow-md text-black w-full"
@@ -129,6 +144,7 @@ const PasswordReset = (props) => {
                   </h1>
 
                   <input
+                    autocomplete="false"
                     type="text"
                     class={formStyle.inputBottom}
                     id="confirmationCode"
@@ -137,20 +153,21 @@ const PasswordReset = (props) => {
                     onChange={handleFieldChange}
                   />
                   <input
+                    autocomplete="false"
                     type={revealPassword ? "text" : "password"}
                     id="newPassword"
                     class={formStyle.inputBottom}
                     name="newPassword"
-                    placeholder="Password"
+                    placeholder="New Password"
                     value={fields.newPassword}
                     onChange={handleFieldChange}
+                    onMouseEnter={popInstructions}
                   />
 
                   <input
-                    type={"password"}
+                    type="password"
                     class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
                     id="confirmNewPassword"
-                    value={fields.confirmNewPassword}
                     placeholder="Confirm New Password"
                     onChange={handleFieldChange}
                   />

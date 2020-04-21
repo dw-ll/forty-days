@@ -156,7 +156,12 @@ const Signup = (props) => {
         <div class="bg-gray-400 min-h-screen md:flex flex-col">
           <div class={formStyle.wrapper}>
             <BlockUi blocking={isLoading}>
-              <form id="form" class={formStyle.form} onSubmit={handleSubmit}>
+              <form
+                autocomplete="off"
+                id="form"
+                class={formStyle.form}
+                onSubmit={handleSubmit}
+              >
                 <div id="form-content" class={formStyle.body}>
                   <h1 class={formStyle.header}>Sign up with Forty Days</h1>
 
