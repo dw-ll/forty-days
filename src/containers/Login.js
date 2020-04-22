@@ -5,7 +5,7 @@ import { ToastContainer, Flip } from "react-toastify";
 import { Notify } from "../libs/notify";
 import { useFormFields } from "../libs/hooksLib";
 import { validateSignIn } from "../libs/validate";
-import { formStyle } from "../styles/form";
+import { formStyle } from "../styles/formStyle";
 import "react-block-ui/style.css";
 
 const Login = (props) => {
@@ -40,7 +40,7 @@ const Login = (props) => {
         draggable
         pauseOnHover
       />
-      <div class="bg-gray-400 min-h-screen md:flex flex-col">
+      <div class={formStyle.container}>
         <div class={formStyle.wrapper}>
           <BlockUi blocking={isLoading}>
             <form id="form" class={formStyle.form} onSubmit={handleSubmit}>

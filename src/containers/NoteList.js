@@ -1,4 +1,5 @@
 import React from "react";
+import noteStyle from "../styles/noteStyle";
 
 const NoteList = (props) => {
   return [{}]
@@ -12,24 +13,22 @@ const NoteList = (props) => {
             onClick={() => {
               props.toggleNoteModal(note);
             }}
-            class="block group hover:bg-gray-300 p-4 border-b w-full cursor-pointer"
+            class={noteStyle.notePreview}
             key={i}
             id={note}
           >
-            <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
-              {note.title}
-            </p>
-            <p class="text-grey-darker mb-2 group-hover:text-white">
+            <p class={noteStyle.notePreviewTitle}>{note.title}</p>
+            <p class={noteStyle.notePreviewContent}>
               {note.content.trim().split("\n")[0]}
             </p>
-            <p class="flex items-end">
+            <p class={noteStyle.notePreviewTimestamp}>
               Written: {new Date(note.createdAt).toLocaleString()}
             </p>
           </div>
         </div>
       ) : (
-        <a href="/notes/new" class="block group hover:bg-gray-300 p-4 border-b">
-          <p class="font-bold text-lg mb-1 text-black group-hover:text-white">
+        <a href="/notes/new" class={noteStyle.createNoteWrapper}>
+          <p class={noteStyle.createNoteText}>
             <b>{"\uFF0B"}</b>
             Create a new note
           </p>

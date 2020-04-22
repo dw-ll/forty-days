@@ -4,7 +4,7 @@ import { Auth } from "aws-amplify";
 import { ToastContainer, Flip } from "react-toastify";
 import { Notify } from "../libs/notify";
 import { validateForm, validateConfirmationForm } from "../libs/validate";
-import { formStyle } from "../styles/form";
+import { formStyle } from "../styles/formStyle";
 import BlockUi from "react-block-ui";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -153,7 +153,7 @@ const Signup = (props) => {
           pauseOnHover
         />
 
-        <div class="bg-gray-400 min-h-screen md:flex flex-col">
+        <div class={formStyle.container}>
           <div class={formStyle.wrapper}>
             <BlockUi blocking={isLoading}>
               <form

@@ -1,4 +1,5 @@
 export const formStyle = {
+  container: "bg-gray-400 min-h-screen md:flex  flex-col",
   wrapper:
     "container max-w-sm mx-auto xs:py-12 flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4",
   form: "mt-6",

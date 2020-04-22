@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { useFormFields } from "../libs/hooksLib";
 import { Notify } from "../libs/notify";
 import { validateResetEmail, validateResetForm } from "../libs/validate";
-import { formStyle } from "../styles/form.js";
+import { formStyle } from "../styles/formStyle.js";
 
 const PasswordReset = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -126,22 +126,17 @@ const PasswordReset = (props) => {
           draggable
           pauseOnHover
         />
-        <div class="bg-gray-400 min-h-screen md:flex  flex-col">
-          <div class="container max-w-sm mx-auto  xs:py-12 flex-1 flex flex-col items-center justify-center px-2 smlandscape:py-4">
+        <div class={formStyle.container}>
+          <div class={formStyle.wrapper}>
             <BlockUi blocking={isConfirming}>
               <form
                 action=""
                 autocomplete="false"
-                class="mt-6"
+                class={formStyle.form}
                 onSubmit={confirmPassword}
               >
-                <div
-                  id="form-content"
-                  class="bg-white px-6 py-8 rounded shadow-md text-black w-full"
-                >
-                  <h1 class="mb-8 xs:text-xl text-2xl font-bold text-center text-gray-700">
-                    Reset Your Password
-                  </h1>
+                <div id="form-content" class={formStyle.body}>
+                  <h1 class={formStyle.header}>Reset Your Password</h1>
 
                   <input
                     id="confirmationCode"
@@ -164,20 +159,19 @@ const PasswordReset = (props) => {
                     onChange={handleFieldChange}
                   />
                   <input
-                    autocomplete="false"
                     type={revealPassword ? "text" : "password"}
                     id="newPassword"
-                    class={formStyle.inputBottom}
+                    class={formStyle.input}
                     name="new-password"
                     placeholder="New Password"
                     value={fields.newPassword}
                     onChange={handleFieldChange}
                     onMouseEnter={popInstructions}
                   />
-                
+
                   <input
                     type="password"
-                    class="block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline"
+                    class={formStyle.inputBottom}
                     id="confirmNewPassword"
                     placeholder="Confirm New Password"
                     onChange={handleFieldChange}
@@ -192,7 +186,7 @@ const PasswordReset = (props) => {
                   </a>
                   <button
                     type="submit"
-                    class="w-full text-center py-3 rounded font-bold bg-gray-200 text-gray-700 hover:bg-gray-600 focus:outline-none my-1"
+                    class={formStyle.button}
                     disabled={
                       !validateResetForm(
                         fields.newPassword,

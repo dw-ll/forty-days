@@ -13,15 +13,19 @@ const Home = (props) => {
   const [isLoading, setIsloading] = useState(true);
   const [noteModal, setNoteModal] = useState(false);
   const [currentTab, setCurrentTab] = useState(false);
+  const [skeleton, setSkeleton] = useState(false);
 
   useEffect(() => {
     async function onLoad() {
       if (!props.authenticatedUser) {
         return;
       }
+      setIsloading(true);
+      setSkeleton(true);
       try {
         const notes = await loadNotes();
         const allNotes = await loadAllNotes();
+
         notes.sort(function (a, b) {
           return noteSort(a, b);
         });
@@ -34,6 +38,7 @@ const Home = (props) => {
         alert(e);
       }
       setIsloading(false);
+      setSkeleton(false);
     }
     onLoad();
   }, [props.authenticatedUser]);
@@ -59,7 +64,7 @@ const Home = (props) => {
     );
   };
 
-  const renderNoteList = (allNotes, notes) => {
+  const renderNoteList = (allNotes, notes, skeleton) => {
     return (
       <NoteList
         allNotes={allNotes}
@@ -68,6 +73,7 @@ const Home = (props) => {
         notes={notes}
         noteModal={noteModal}
         renderModal={renderModal}
+        skeleton={skeleton}
         toggleNoteModal={toggleNoteModal}
       />
     );
@@ -84,6 +90,7 @@ const Home = (props) => {
         isLoading={isLoading}
         notes={notes}
         renderNoteList={renderNoteList}
+        skeleton={skeleton}
         setCurrentTab={setCurrentTab}
       />
     );
