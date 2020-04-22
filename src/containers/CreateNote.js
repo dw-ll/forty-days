@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { useFormFields } from "../libs/hooksLib";
 import { API } from "aws-amplify";
-
 import BlockUi from "react-block-ui";
 import config from "../config";
+import noteStyle from "../styles/noteStyle";
 
 const CreateNote = (props) => {
   const file = useRef(null);
@@ -44,20 +44,23 @@ const CreateNote = (props) => {
   }
   return (
     <BlockUi blocking={isLoading}>
-      <div class="page-wrapper flex mb-4 h-screen ">
-        <div class="left-half hidden lg:flex w-1/2 py-12 h-full bg-gray-400">
-          <div class="max-w-full max-w-xs">
-            <form class="px-16 py-8 mb-4 lg:min-w-full" onSubmit={handleSubmit}>
-              <div
-                id="note-card"
-                class="max-wm-sm rounded shadow-lg mt-12 bg-gray-100 lg:min-w-full"
-              >
-                <div id="note-content" class="px-6 py-4">
-                  <div class="font-bold text-2x pt-4">
+      <div class={noteStyle.createNote.wrapper}>
+        <div class={noteStyle.createNote.leftHalf.wrapper}>
+          <div class={noteStyle.createNote.leftHalf.formWrapper}>
+            <form
+              class={noteStyle.createNote.leftHalf.form}
+              onSubmit={handleSubmit}
+            >
+              <div id="note-card" class={noteStyle.createNote.leftHalf.card}>
+                <div
+                  id="note-content"
+                  class={noteStyle.createNote.leftHalf.contentWrapper}
+                >
+                  <div class={noteStyle.createNote.leftHalf.noteTitle}>
                     {note.title ? note.title : "New Note"}
                   </div>
                   <p
-                    class="text-gray-700 text-base mt-8"
+                    class={noteStyle.createNote.leftHalf.noteContent}
                     style={{ whiteSpace: "pre-wrap" }}
                   >
                     {note.content
@@ -70,16 +73,13 @@ const CreateNote = (props) => {
           </div>
         </div>
 
-        <div class="right-half lg:h-full w-screen lg:w-1/2 px-8 mdlandscape:overflow-y-scroll lg:px-0 bg-gray-500">
-          <div class="form-wrapper max-w-full max-w-xs  mdlandscape:max-h-screen py-6 md:ml-8 lg:py-12 lg:ml-0 xl:ml-18 xxl:ml-18">
+        <div class={noteStyle.createNote.rightHalf.wrapper}>
+          <div class={noteStyle.createNote.rightHalf.formWrapper}>
             <form
-              class="px-2 mdlandscape:py-0 md:px-16 max-h-1/2 md:py-8 md:mb-4 lg:px-12 lg:min-w-full"
+              class={noteStyle.createNote.rightHalf.form}
               onSubmit={handleSubmit}
             >
-              <div
-                id="note-card"
-                class="md:max-h-1/2 rounded overflow-hidden shadow-lg mt-12 bg-gray-300 lg:w-full"
-              >
+              <div id="note-card" class={noteStyle.createNote.rightHalf.card}>
                 <div class="flex pt-4 items-center border-b border-blue-200 py-2 mx-6">
                   <input
                     class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 leading-tight focus:outline-none"

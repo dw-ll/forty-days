@@ -27,8 +27,8 @@ const NoteList = (props) => {
           </div>
         </div>
       ) : (
-        <a href="/notes/new" class={noteStyle.createNoteWrapper}>
-          <p class={noteStyle.createNoteText}>
+        <a href="/notes/new" class={noteStyle.createNoteButtonWrapper}>
+          <p class={noteStyle.createNoteButtonText}>
             <b>{"\uFF0B"}</b>
             Create a new note
           </p>
