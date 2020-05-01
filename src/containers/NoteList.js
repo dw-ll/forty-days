@@ -30,7 +30,7 @@ const NoteList = (props) => {
         <a href="/notes/new" class={noteStyle.createNoteButtonWrapper}>
           <p class={noteStyle.createNoteButtonText}>
             <b>{"\uFF0B"}</b>
-            Create a new note
+            New Note
           </p>
         </a>
       )

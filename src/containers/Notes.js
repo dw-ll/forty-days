@@ -23,7 +23,7 @@ const Notes = (props) => {
           </ul>
         )}
       </div>
-      <div class='flex'>
+      <div class="flex">
         <h1 class={noteStyle.header}>
           {props.isLoading ? (
             <NoteHeaderSkeleton />
@@ -34,13 +34,14 @@ const Notes = (props) => {
           )}
         </h1>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 ">
-        {props.isLoading ? (
-          <NoteSkeleton notes={props.notes} />
-        ) : (
-          props.renderNoteList(props.allNotes, props.notes, props.skeleton)
-        )}
-      </div>
+
+      {props.isLoading ? (
+        <NoteSkeleton notes={props.notes} />
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 ">
+          {props.renderNoteList(props.allNotes, props.notes, props.skeleton)}
+        </div>
+      )}
     </div>
   );
 };
