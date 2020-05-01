@@ -33,9 +33,9 @@ const noteStyle = {
     },
   },
   notePreview:
-    "block group hover:bg-gray-300 p-4 mx-auto border-b w-full cursor-pointer shadow-xs",
-  notePreviewTitle: "font-bold text-lg mb-1 text-black group-hover:text-white",
-  notePreviewContent: "text-grey-darker mb-2 pr-2 group-hover:text-white",
+    "block h-full group hover:bg-gray-300 p-4 mx-auto border-b w-full cursor-pointer shadow-xs",
+  notePreviewTitle: "break-words font-bold text-lg mb-1 text-black group-hover:text-white",
+  notePreviewContent: "break-words text-grey-darker mb-2 pr-2 group-hover:text-white",
   notePreviewTimestamp: "flex items-end",
 };
 export default noteStyle;

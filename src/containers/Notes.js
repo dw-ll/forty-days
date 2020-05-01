@@ -10,18 +10,18 @@ const Notes = (props) => {
         {props.isLoading ? (
           <TabSkeleton />
         ) : (
-          <ul class="flex">
-            <li
-              class={noteStyle.tab}
-              onClick={() => props.setCurrentTab(false)}
-            >
-              <a class={!props.currentTab ? activeTab : idleTab}>You</a>
-            </li>
-            <li class={noteStyle.tab} onClick={() => props.setCurrentTab(true)}>
-              <a class={props.currentTab ? activeTab : idleTab}>Us</a>
-            </li>
-          </ul>
-        )}
+            <ul class="flex">
+              <li
+                class={noteStyle.tab}
+                onClick={() => props.setCurrentTab(false)}
+              >
+                <a class={!props.currentTab ? activeTab : idleTab}>You</a>
+              </li>
+              <li class={noteStyle.tab} onClick={() => props.setCurrentTab(true)}>
+                <a class={props.currentTab ? activeTab : idleTab}>Us</a>
+              </li>
+            </ul>
+          )}
       </div>
       <div class="flex">
         <h1 class={noteStyle.header}>
@@ -30,18 +30,18 @@ const Notes = (props) => {
           ) : !props.currentTab ? (
             "Your Notes"
           ) : (
-            "Our Notes"
-          )}
+                "Our Notes"
+              )}
         </h1>
       </div>
 
       {props.isLoading ? (
         <NoteSkeleton notes={props.notes} />
       ) : (
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 ">
-          {props.renderNoteList(props.allNotes, props.notes, props.skeleton)}
-        </div>
-      )}
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+            {props.renderNoteList(props.allNotes, props.notes, props.skeleton)}
+          </div>
+        )}
     </div>
   );
 };
