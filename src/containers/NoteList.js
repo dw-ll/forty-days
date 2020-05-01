@@ -2,8 +2,7 @@ import React from "react";
 import noteStyle from "../styles/noteStyle";
 
 const NoteList = (props) => {
-  return [{}]
-    .concat(!props.currentTab ? props.notes : props.allNotes)
+  return [{}].concat(!props.currentTab ? props.notes : props.allNotes)
     .map((note, i) =>
       i !== 0 ? (
         <div>

@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { activeTab, idleTab } from "../libs/tabs";
+import noteSearch from '../libs/search';
 import { NoteHeaderSkeleton, NoteSkeleton, TabSkeleton } from "./NoteSkeleton";
 import noteStyle from "../styles/noteStyle";
-
+var allResults = [],
+  userResults = [];
 const Notes = (props) => {
+  const [searchFlag, setSearchFlag] = useState(false);
+  const [value, setValue] = useState('');
+  const searchChangeHandler = e => {
+    if (e.target.value === '' || e.target.value.length < 4) {
+
+      setSearchFlag(false);
+    } else {
+      setSearchFlag(true);
+      [userResults, allResults] = noteSearch(e, props.notes, props.allNotes);
+      console.log(userResults);
+      console.log(allResults);
+      if (!userResults || !allResults) {
+        setSearchFlag(false);
+      }
+    }
+  }
+
   return (
     <div class={noteStyle.container}>
       <div class={noteStyle.wrapper}>
@@ -35,11 +54,18 @@ const Notes = (props) => {
         </h1>
       </div>
 
+
+      <div class="relative py-4 ">
+        <input type="search" class="shadow-md rounded border-0 p-3 w-full sm:w-1/2 lg:w-1/4" placeholder="Search" onChange={searchChangeHandler} >
+        </input>
+      </div>
+
+
       {props.isLoading ? (
         <NoteSkeleton notes={props.notes} />
       ) : (
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-            {props.renderNoteList(props.allNotes, props.notes, props.skeleton)}
+            {props.renderNoteList(searchFlag ? allResults : props.allNotes, searchFlag ? userResults : props.notes, props.skeleton)}
           </div>
         )}
     </div>
