@@ -23,23 +23,23 @@ const Notes = (props) => {
           </ul>
         )}
       </div>
-      <h1 class={noteStyle.header}>
-        {props.isLoading ? (
-          <NoteHeaderSkeleton />
-        ) : !props.currentTab ? (
-          "Your Notes"
-        ) : (
-          "Our Notes"
-        )}
-      </h1>
-      <div class={noteStyle.listContainer}>
-        <div class={noteStyle.listWrapper}>
+      <div class='flex'>
+        <h1 class={noteStyle.header}>
           {props.isLoading ? (
-            <NoteSkeleton notes={props.notes} />
+            <NoteHeaderSkeleton />
+          ) : !props.currentTab ? (
+            "Your Notes"
           ) : (
-            props.renderNoteList(props.allNotes, props.notes, props.skeleton)
+            "Our Notes"
           )}
-        </div>
+        </h1>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 ">
+        {props.isLoading ? (
+          <NoteSkeleton notes={props.notes} />
+        ) : (
+          props.renderNoteList(props.allNotes, props.notes, props.skeleton)
+        )}
       </div>
     </div>
   );
