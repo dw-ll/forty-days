@@ -19,7 +19,8 @@ const NoteList = (props) => {
           >
             <p class={noteStyle.notePreviewTitle}>{note.title}</p>
             <p class={noteStyle.notePreviewContent}>
-              {note.content.trim().split("\n")[0]}
+              {note.content.trim().split("\n")[0].substr(0, 25)}
+              ...
             </p>
             <p class={noteStyle.notePreviewTimestamp}>
               Written: {new Date(note.createdAt).toLocaleString()}
