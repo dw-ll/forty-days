@@ -64,25 +64,28 @@ const Notes = (props) => {
       </div>
 
 
-      <div class="relative py-4 ">
-        <input class="block border shadow-md hover:shadow-lg border-grey-light w-full sm:w-1/2 lg:w-1/4 p-3 rounded mb-2 border border-grey-light" placeholder="Search" onChange={searchChangeHandler} >
-        </input>
-      </div>
 
 
       {props.isLoading ? (
         <NoteSkeleton />
-      ) : (
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-            {searching ?
-              <Loader type="ball-grid-beat" active /> :
-              props.renderNoteList(searchFlag ? allResults : props.allNotes,
-                searchFlag ? userResults : props.notes,
-                props.skeleton)}
+      ) : (<>
 
-          </div>
+        <div class="relative py-4 ">
+          <input class="block border shadow-md hover:shadow-lg border-grey-light w-full sm:w-1/2 lg:w-1/4 p-3 rounded mb-2 border border-grey-light" placeholder="Search" onChange={searchChangeHandler} >
+          </input>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+          {searching ?
+            <Loader type="ball-grid-beat" active /> :
+            props.renderNoteList(searchFlag ? allResults : props.allNotes,
+              searchFlag ? userResults : props.notes,
+              props.skeleton)}
+
+        </div>
+      </>
         )}
     </div>
+
   );
 };
 
