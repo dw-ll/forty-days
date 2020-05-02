@@ -65,7 +65,7 @@ const Notes = (props) => {
 
 
       <div class="relative py-4 ">
-        <input type="search" class="block border border-grey-light w-full sm:w-1/2 lg:w-1/4 p-3 rounded mb-2 border border-grey-light" placeholder="Search" onChange={searchChangeHandler} >
+        <input class="block border border-grey-light w-full sm:w-1/2 lg:w-1/4 p-3 rounded mb-2 border border-grey-light" placeholder="Search" onChange={searchChangeHandler} >
         </input>
       </div>
 
