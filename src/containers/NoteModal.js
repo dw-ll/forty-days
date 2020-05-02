@@ -10,9 +10,9 @@ const NoteModal = (props) => {
         <div class="border border-gray-600 shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
           <div class="modal-content py-4 text-left px-6">
             <div class="flex justify-between items-center pb-3">
-              <p class="text-2xl font-bold border-b w-full">
+              <h1 class="text-2xl font-bold border-b w-full">
                 {props.note.title}
-              </p>
+              </h1>
               <div class="modal-close cursor-pointer z-50"></div>
             </div>
 

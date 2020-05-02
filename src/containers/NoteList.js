@@ -16,7 +16,7 @@ const NoteList = (props) => {
             key={i}
             id={note}
           >
-            <p class={noteStyle.notePreviewTitle}>{note.title}</p>
+            <h1 class={noteStyle.notePreviewTitle}>{note.title}</h1>
             <p class={noteStyle.notePreviewContent}>
               {note.content.trim().split("\n")[0].substr(0, 50)}
                ...
@@ -28,10 +28,10 @@ const NoteList = (props) => {
         </div>
       ) : (
           <a href="/notes/new" class={noteStyle.createNoteButtonWrapper}>
-            <p class={noteStyle.createNoteButtonText}>
+            <h1 class={noteStyle.createNoteButtonText}>
               <b>{"\uFF0B"}</b>
             New Note
-          </p>
+          </h1>
           </a>
         )
     );

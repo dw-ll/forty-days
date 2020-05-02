@@ -6,7 +6,7 @@ export const formStyle = {
   body: "bg-white px-6 py-8 rounded shadow-md text-black w-full",
   header: "mb-8 xs:text-xl text-2xl font-bold text-center text-gray-700",
   input:
-    "block border border-grey-light w-full p-3 rounded mb-2 focus:outline-none focus:shadow-outline",
+    "block border border-grey-light w-full p-3 rounded mb-2 border border-grey-light",
   inputBottom:
     "block border border-grey-light w-full p-3 rounded mb-4 focus:outline-none focus:shadow-outline",
   button:
