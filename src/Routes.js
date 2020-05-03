@@ -8,6 +8,7 @@ import Login from "./containers/Login";
 import SignUp from "./containers/Signup";
 import CreateNote from "./containers/CreateNote";
 import NoteEdit from "./containers/NoteEdit";
+import NoteView from './containers/NoteView.js';
 import Unknown from "./containers/Unknown";
 import PasswordReset from "./containers/PasswordReset";
 
@@ -42,7 +43,7 @@ export default function Routes({ appProps }) {
       <AuthenticatedRoute
         path="/notes/:id"
         exact
-        component={NoteEdit}
+        component={NoteView}
         appProps={appProps}
       />
       <Route exact component={Unknown} />
