@@ -9,7 +9,6 @@ const NoteList = (props) => {
           {props.noteModal && props.renderModal(props.currentNote)}
           <a href={`notes/${note.noteId}`}>
             <div
-
               class={noteStyle.notePreview}
               key={i}
               id={note}

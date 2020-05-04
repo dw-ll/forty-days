@@ -320,6 +320,7 @@ module.exports = {
       forty: "40vh",
       half: "50vh",
       sixty: "60vh",
+      seventy: "70vh",
       screen: "100vh",
     }),
     inset: {
@@ -362,6 +363,7 @@ module.exports = {
     }),
     maxHeight: {
       full: "100%",
+      seventy: "70vh",
       screen: "100vh",
     },
     maxWidth: (theme, { breakpoints }) => ({
