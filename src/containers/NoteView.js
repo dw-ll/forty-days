@@ -4,15 +4,17 @@ import CommentList from './CommentList';
 
 const NoteView = props => {
     const [note, setNote] = useState(null);
+    const [currentId, setCurrentId] = useState(props.match.params.id);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [comments, setComments] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
-    const renderComments = (comments) => {
+    const renderComments = (id, comments) => {
         return (
             <CommentList
-                comments={comments} />
+                comments={comments}
+                id={id} />
         )
     }
 
@@ -36,11 +38,11 @@ const NoteView = props => {
     }, [props.match.params.id]);
     return (
 
-        <div class='py-10  h-full bg-gray-200'>
-            <div class='container items-center justify-center max-w-1/2'>
+        <div class='py-10 mx-auto h-full bg-gray-200'>
+            <div class='container items-center justify-center mx-auto max-w-1/2'>
                 <div class='px-12 mb-4 sm:min-w-full '>
                     <div class='max-w-sm rounded shadow-lg mt-12 bg-white sm:min-w-full '>
-                        <div class='px-6 py-4 overflow-y-scroll'>
+                        <div class='px-6 py-4 min-h-seventy overflow-y-scroll'>
                             <h1 class='font-bold text-2xl pt-4'>
                                 {title}
                             </h1>
@@ -51,8 +53,8 @@ const NoteView = props => {
                         </div>
                     </div>
                 </div>
-                <h1 class='text-gray-600 text-2xl mx-2'>Comments</h1>
-                {renderComments(comments)}
+                <h1 class='text-gray-600 font-bold text-3xl mx-4'>Comments</h1>
+                {renderComments(currentId, comments)}
 
             </div>
 
