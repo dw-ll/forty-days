@@ -59,17 +59,24 @@ const CommentList = (props) => {
             </>
 
         ) : (
-                <form class="w-full max-w-sm " onSubmit={handleSubmit}>
-                    <div class="flex items-center pb-2">
-                        <input
-                            id='content'
+                <form class="w-full max-w-md " onSubmit={handleSubmit}>
+                    <div class="">
+                        <textarea
                             value={content}
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            class="shadow hover:shadow-lg appearance-none border rounded w-full pt-3 px-3 text-gray-700 leading-tight focus:outline-none"
                             type="text"
                             onChange={handleChange}
+                            rows={4}
                             placeholder="Add a comment"
                         >
-                        </input>
+                        </textarea>
+                        <input type="text" style={{ display: "none" }} />
+                        <div class='flex bg-gray-300 py-2 px-1 justify-start mb-1 rounded'>
+                            <button class="xs:w-full h-full flex-shrink-0 bg-gray-500 hover:bg-gray-700 py-2 text-sm text-white px-2 rounded" type="button" onClick={handleSubmit} disabled={!content}>
+                                Comment
+                        </button>
+                        </div>
+
 
                     </div>
                 </form>

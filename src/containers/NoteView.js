@@ -38,7 +38,7 @@ const NoteView = props => {
     }, [props.match.params.id]);
     return (
 
-        <div class='py-4 h-full mx-auto bg-gray-200'>
+        <div class='py-4 min-h-screen mx-auto bg-gray-200'>
             <div class='container items-center justify-center mx-auto max-w-1/4'>
                 <div class='px-12 mb-4 sm:min-w-full '>
                     <div class='max-w-sm  max-h-1/2 rounded shadow-lg mt-12 bg-white sm:min-w-full '>
