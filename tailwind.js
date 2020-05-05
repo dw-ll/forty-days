@@ -320,7 +320,7 @@ module.exports = {
       forty: "40vh",
       half: "50vh",
       sixty: "60vh",
-      seventy: "70vh",
+      seventy: "70%",
       screen: "100vh",
     }),
     inset: {
@@ -378,6 +378,9 @@ module.exports = {
       "4xl": "56rem",
       "5xl": "64rem",
       "6xl": "72rem",
+      '1/4': '25%',
+      '1/2': '50%',
+      '3/4': '75%',
       full: "100%",
       ...breakpoints(theme("screens")),
     }),

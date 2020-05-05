@@ -97,7 +97,7 @@ function App() {
             </>
           )}
         </header>
-        <div class="main-wrapper bg-grey-200 h-screen">
+        <div class="main-wrapper">
           <Routes appProps={{ authenticatedUser, setAuthenticatedUser }} />
         </div>
       </div>
